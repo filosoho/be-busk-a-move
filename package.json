@@ -10,7 +10,8 @@
     "seed-prod": "NODE_ENV=production npm run seed",
     "test": "jest --runInBand",
     "utils": "jest utils.validations.test.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "nodemon listen.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +26,10 @@
     "jest-sorted": "^1.0.15",
     "nodemon": "^3.1.4",
     "pg-format": "^1.0.4",
-    "supertest": "^7.0.0",
-    "dev": "nodemon listen.js"
+    "supertest": "^7.0.0"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
