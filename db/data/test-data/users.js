@@ -1,0 +1,48 @@
+module.exports = [
+  {
+    username: "Jodie_Bednar22",
+    full_name: "Beverly Christiansen",
+    user_email: "Jett91@gmail.com",
+    user_password: "Czh}as7hcr",
+    user_image_url: "https://avatars.githubusercontent.com/u/84968041",
+    user_location: "North Gayleboro, UK",
+    user_about_me: "Currus texo quaerat quisquam cornu sustineo demoror usque.",
+    user_set_up: true,
+    instruments: ["Vocals", "Flute"],
+  },
+  {
+    username: "Vallie_Larkin",
+    full_name: "Jody Kozey",
+    user_email: "Moses_Skiles78@gmail.com",
+    user_password: "r75xf6o[mB",
+    user_image_url:
+      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg",
+    user_location: "Tuscaloosa, UK",
+    user_about_me: "Adhuc videlicet amiculum bardus uter.",
+    user_set_up: false,
+    instruments: ["Synthesizer", "Drums"],
+  },
+  {
+    username: "Sheridan72",
+    full_name: "Donna Ziemann",
+    user_email: "Eldon59@hotmail.com",
+    user_password: "20uW_if3mz",
+    user_image_url:
+      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/823.jpg",
+    user_location: "Fort Viviane, UK",
+    user_about_me: "Pecus correptius eligendi vallum cicuta uberrime.",
+    user_set_up: false,
+    instruments: ["Clarinet", "Guitar"],
+  },
+  {
+    username: "Johan.Smitham",
+    full_name: "Brett Jast-Price",
+    user_email: "Karlie24@yahoo.com",
+    user_password: "Tc~o5igqvi",
+    user_image_url: "https://avatars.githubusercontent.com/u/93457327",
+    user_location: "West Angel, UK",
+    user_about_me: "Adfero vester sint abundans averto vivo decet.",
+    user_set_up: false,
+    instruments: ["Guitar", "Keyboard"],
+  },
+];
