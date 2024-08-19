@@ -1,0 +1,36 @@
+{
+	"GET /api/users": {
+		"description": "Serves an array of all users",
+		"queries": [],
+		"exampleResponse": {
+			"users": [
+				{
+					"username": "Jodie_Bednar22",
+					"full_name": "Beverly Christiansen",
+					"user_email": "Jett91@gmail.com",
+					"user_password": "Czh}as7hcr",
+					"user_image_url": "https://avatars.githubusercontent.com/u/84968041",
+					"user_location": "North Gayleboro, UK",
+					"user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
+					"user_set_up": true,
+					"instruments": ["Vocals", "Flute"]
+				}
+			]
+		}
+	},
+	"GET /api/users/:user_id": {
+		"description": "Serves an individual user with given user_id parameter",
+		"queries": [],
+		"exampleResponse": {
+			"username": "Jodie_Bednar22",
+			"full_name": "Beverly Christiansen",
+			"user_email": "Jett91@gmail.com",
+			"user_password": "Czh}as7hcr",
+			"user_image_url": "https://avatars.githubusercontent.com/u/84968041",
+			"user_location": "North Gayleboro, UK",
+			"user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
+			"user_set_up": true,
+			"instruments": ["Vocals", "Flute"]
+		}
+	}
+}
