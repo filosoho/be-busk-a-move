@@ -18,7 +18,20 @@ describe('GET /api/busks' ,() => {
         .get('/api/busks')
         .expect(200)
         .then((response) => {
-            expect(response.body.busks.length).toBeGreaterThan(0)
+            const busks = response.body.busks
+            expect(busks.length).toBeGreaterThan(0)
+            expect(Array.isArray(busks)).toBe(true)
+            busks.forEach((busk) => {
+                expect(busk).toHaveProperty('busk_location')
+                expect(busk).toHaveProperty('busk_location_name')
+                expect(busk).toHaveProperty('busk_time')
+                expect(busk).toHaveProperty('busk_date')
+                expect(busk).toHaveProperty('username')
+                expect(busk).toHaveProperty('user_image_url')
+                expect(busk).toHaveProperty('busk_about_me')
+                expect(busk).toHaveProperty('busk_setup')
+            })
         })
     })
+    
 })
