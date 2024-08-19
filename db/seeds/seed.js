@@ -30,7 +30,7 @@ const seed = ({ usersData, busksData }) => {
           busk_location JSONB NOT NULL,
           busk_location_name VARCHAR(100) NOT NULL,
           busk_time TIME NOT NULL,
-          busk_date DATE NOT NULL,
+          busk_date DATE,
           username VARCHAR(50) REFERENCES users(username),
           user_image_url VARCHAR(250),
           busk_about_me VARCHAR(1000) NOT NULL,
@@ -97,7 +97,7 @@ const seed = ({ usersData, busksData }) => {
       return db.query(insertBusksQueryStr);
     })
     .then(() => {
-      console.log("Database seeded successfully.");
+      //console.log("Database seeded successfully.");
     })
     .catch((err) => {
       console.error("Error seeding database:", err);
