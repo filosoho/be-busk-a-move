@@ -4,7 +4,7 @@ const request = require("supertest");
 const app = require("../app");
 const data = require("../db/data/test-data/index");
 
-beforeEach(() => {
+beforeAll(() => {
 	return seed(data);
 });
 
@@ -43,28 +43,39 @@ describe('GET /api/busks' ,() => {
             })
         })
     })
-
-     it('POST 201: should respond with a 201 status code and add a busk to the database' , () => {
-        const newBusk = {
-            busk_location: 'New Location',
-            busk_location_name: 'New Location Name',
-            busk_time: '2024-08-19T12:00:00Z',
-            busk_date:'2024-08-19',
-            username: 'test_user',
-            user_image_url: 'http://example.com/image.jpg',
-            busk_about_me: 'About the busk',
-            busk_setup: 'Setup details',
-        };
-
-        return request(app)
-            .post('/api/busks')
-            .send(newBusk)
-            .expect(201)
-            .then((response) => {
-                const { busk } = response.body;
-                expect(busk).toMatchObject(newBusk);
-
-               
-            });
-     })
 })
+describe('POST /api/busks', () => {
+    it('should respond with a 201 status code and add a busk to the database', () => {
+      const newBusk = {
+        busk_location: { latitude: 40.7128, longitude: -74.0060 },
+        busk_location_name: 'Central Park',
+        busk_time: '15:00:00', 
+        busk_date: null,
+        username: 'Jodie_Bednar22',
+        user_image_url: 'http://example.com/image.jpg',
+        busk_about_me: 'Looking for musicians!',
+        busk_setup: 'Guitar and vocals',
+      };
+  
+      return request(app)
+        .post('/api/busks')
+        .send(newBusk)
+        .expect(201)
+        .then(response => {
+            console.log(response, '<<<back in test')
+          expect(response.body.busk).toEqual({
+            busk_location: { latitude: 40.7128, longitude: -74.0060 },
+            busk_location_name: 'Central Park',
+            busk_time: '15:00:00', 
+            busk_date: null,
+            busk_id: 5,
+            username: 'Jodie_Bednar22',
+            user_image_url: 'http://example.com/image.jpg',
+            busk_about_me: 'Looking for musicians!',
+            busk_setup: 'Guitar and vocals',
+          })
+  
+        })
+       
+    });
+  });
