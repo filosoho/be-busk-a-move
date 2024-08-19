@@ -1,16 +1,16 @@
-const db = require('../db/connection')
-const seed = require('../db/seeds/seed')
-const request = require('supertest')
-const app = require('../app')
-const data = require('../db/data/test-data/index')
+const db = require("../db/connection");
+const seed = require("../db/seeds/seed");
+const request = require("supertest");
+const app = require("../app");
+const data = require("../db/data/test-data/index");
 
 beforeEach(() => {
-    return seed(data)
-})
+	return seed(data);
+});
 
 afterAll(() => {
-    return db.end()
-})
+	return db.end();
+});
 
 describe('GET /api/busks' ,() => {
     it('GET 200: should respond with a 200 status code and return an array of busks to the client', () => {

@@ -1,12 +1,11 @@
 const format = require("pg-format");
 const db = require("../connection");
-const { usersData, busksData } = require("../data/development-data");
 
-const seed = () => {
+const seed = ({ usersData, busksData }) => {
   return db
-    .query(`DROP TABLE IF EXISTS busks;`)
+    .query(`DROP TABLE IF EXISTS busks CASCADE;`)
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS users;`);
+      return db.query(`DROP TABLE IF EXISTS users CASCADE;`);
     })
     .then(() => {
       return db.query(`
