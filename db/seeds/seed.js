@@ -4,7 +4,7 @@ const { usersData, busksData } = require("../data/development-data");
 
 const seed = () => {
   return db
-    .query(`DROP TABLE IF EXISTS buskers;`)
+    .query(`DROP TABLE IF EXISTS busks;`)
     .then(() => {
       return db.query(`DROP TABLE IF EXISTS users;`);
     })
@@ -98,7 +98,7 @@ const seed = () => {
       return db.query(insertBusksQueryStr);
     })
     .then(() => {
-      console.log("Database seeded successfully.");
+      //console.log("Database seeded successfully.");
     })
     .catch((err) => {
       console.error("Error seeding database:", err);
