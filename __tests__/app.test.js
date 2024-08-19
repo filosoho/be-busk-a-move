@@ -83,4 +83,68 @@ describe("/api/users/:user_id", () => {
 				});
 		});
 	});
+	describe("PATCH", () => {
+		test("PATCH 200, alters the users location when given a user_id and returns the updated user", () => {
+			const body = { user_location: "Manchester, UK" };
+			return request(app)
+				.patch("/api/users/2")
+				.send(body)
+				.expect(200)
+				.then(({ body }) => {
+					expect(body).toEqual({
+						users_id: 2,
+						username: "Vallie_Larkin",
+						full_name: "Jody Kozey",
+						user_email: "Moses_Skiles78@gmail.com",
+						user_password: "r75xf6o[mB",
+						user_image_url:
+							"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg",
+						user_location: "Manchester, UK",
+						user_about_me: "Adhuc videlicet amiculum bardus uter.",
+						user_set_up: false,
+						instruments: ["Synthesizer", "Drums"],
+					});
+				});
+		});
+		test("PATCH 400, responds with a 400 error if the body doesn't contain the correct fields", () => {
+			const body = {};
+			return request(app)
+				.patch("/api/users/2")
+				.send(body)
+				.expect(400)
+				.then(({ body }) => {
+					expect(body.msg).toBe("Bad request");
+				});
+		});
+		test("PATCH 400, responds with a 400 error if there is valid body fields but with invalid values", () => {
+			const body = { full_name: 2222 };
+			return request(app)
+				.patch("/api/users/2")
+				.send(body)
+				.expect(400)
+				.then(({ body }) => {
+					expect(body.msg).toBe("Bad request");
+				});
+		});
+		test("PATCH 400, responds with a 400 error when user_id is the wrong data type", () => {
+			const body = { full_name: "Beverly Christiansen" };
+			return request(app)
+				.patch("/api/users/not_a_number")
+				.send(body)
+				.expect(400)
+				.then(({ body }) => {
+					expect(body.msg).toBe("Bad request");
+				});
+		});
+		test("PATCH 404, responds with a 404 error when requested with a user_id that doesn't exist", () => {
+			const body = { full_name: "Beverly Christiansen" };
+			return request(app)
+				.patch("/api/users/9000")
+				.send(body)
+				.expect(404)
+				.then(({ body }) => {
+					expect(body.msg).toBe("user does not exist");
+				});
+		});
+	});
 });

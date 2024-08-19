@@ -10,4 +10,6 @@ usersRouter.get("/", getUsers);
 
 usersRouter.get("/:user_id", getUserById);
 
+usersRouter.patch("/:user_id", updateUserById);
+
 module.exports = usersRouter;
