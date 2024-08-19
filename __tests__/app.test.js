@@ -48,6 +48,22 @@ describe("GET /api/busks/:busk_id", () => {
         expect(body.busk).toEqual(expectedBusk);
       });
   });
+  test("GET 400: should return error when requested with wrong data type", () => {
+    return request(app)
+      .get("/api/busks/not_a_number")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request");
+      });
+  });
+  test("GET 404: should return error when requested with an id that doesn't exist", () => {
+    return request(app)
+      .get("/api/busks/9000")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Busk does not exist");
+      });
+  });
 });
 
 describe("/api/users", () => {

@@ -11,7 +11,7 @@ exports.fetchBusksById = (busk_id) => {
     .query(`SELECT busks.* FROM busks WHERE busk_id = $1`, [busk_id])
     .then(({ rows }) => {
       if (rows.length === 0) {
-        return Promise.reject({ status: 404, message: "Not found" });
+        return Promise.reject({ status: 404, msg: "Busk does not exist" });
       }
       return rows[0];
     });
