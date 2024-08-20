@@ -1,57 +1,78 @@
 {
-	"GET /api/users": {
-		"description": "Serves an array of all users",
-		"queries": [],
-		"exampleResponse": {
-			"users": [
-				{
-					"username": "Jodie_Bednar22",
-					"full_name": "Beverly Christiansen",
-					"user_email": "Jett91@gmail.com",
-					"user_password": "Czh}as7hcr",
-					"user_image_url": "https://avatars.githubusercontent.com/u/84968041",
-					"user_location": "North Gayleboro, UK",
-					"user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
-					"user_set_up": true,
-					"instruments": ["Vocals", "Flute"]
-				}
-			]
-		}
-	},
-	"GET /api/users/:user_id": {
-		"description": "Serves an individual user with given user_id parameter",
-		"queries": [],
-		"exampleResponse": {
-			"username": "Jodie_Bednar22",
-			"full_name": "Beverly Christiansen",
-			"user_email": "Jett91@gmail.com",
-			"user_password": "Czh}as7hcr",
-			"user_image_url": "https://avatars.githubusercontent.com/u/84968041",
-			"user_location": "North Gayleboro, UK",
-			"user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
-			"user_set_up": true,
-			"instruments": ["Vocals", "Flute"]
-		}
-	},
-	"PATCH /api/users/:user_id": {
-		"description": "serves a user with the value updated when given a value to be updated and a user_id parameter",
-		"queries": [],
-		"exampleResponse": {
-			"users_id": 2,
-			"username": "Vallie_Larkin",
-			"full_name": "Jody Kozey",
-			"user_email": "Moses_Skiles78@gmail.com",
-			"user_password": "r75xf6o[mB",
-			"user_image_url": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg",
-			"user_location": "Manchester, UK",
-			"user_about_me": "Adhuc videlicet amiculum bardus uter.",
-			"user_set_up": false,
-			"instruments": ["Synthesizer", "Drums"]
-		}
-	},
-	"DELETE /api/users/:user_id": {
-		"description": "serves a 204 status response when a given comment is deleted",
-		"queries": [],
-		"exampleResponse": {}
-	}
+  "GET /api/users": {
+    "description": "Serves an array of all users",
+    "queries": [],
+    "exampleResponse": {
+      "users": [
+        {
+          "username": "Jodie_Bednar22",
+          "full_name": "Beverly Christiansen",
+          "user_email": "Jett91@gmail.com",
+          "user_password": "Czh}as7hcr",
+          "user_image_url": "https://avatars.githubusercontent.com/u/84968041",
+          "user_location": "North Gayleboro, UK",
+          "user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
+          "user_set_up": true,
+          "instruments": ["Vocals", "Flute"]
+        }
+      ]
+    }
+  },
+  "GET /api/users/:user_id": {
+    "description": "Serves an individual user with given user_id parameter",
+    "queries": [],
+    "exampleResponse": {
+      "username": "Jodie_Bednar22",
+      "full_name": "Beverly Christiansen",
+      "user_email": "Jett91@gmail.com",
+      "user_password": "Czh}as7hcr",
+      "user_image_url": "https://avatars.githubusercontent.com/u/84968041",
+      "user_location": "North Gayleboro, UK",
+      "user_about_me": "Currus texo quaerat quisquam cornu sustineo demoror usque.",
+      "user_set_up": true,
+      "instruments": ["Vocals", "Flute"]
+    }
+  },
+  "PATCH /api/users/:user_id": {
+    "description": "serves a user with the value updated when given a value to be updated and a user_id parameter",
+    "queries": [],
+    "exampleResponse": {
+      "users_id": 2,
+      "username": "Vallie_Larkin",
+      "full_name": "Jody Kozey",
+      "user_email": "Moses_Skiles78@gmail.com",
+      "user_password": "r75xf6o[mB",
+      "user_image_url": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg",
+      "user_location": "Manchester, UK",
+      "user_about_me": "Adhuc videlicet amiculum bardus uter.",
+      "user_set_up": false,
+      "instruments": ["Synthesizer", "Drums"]
+    }
+  },
+  "DELETE /api/users/:user_id": {
+    "description": "serves a 204 status response when a given comment is deleted",
+    "queries": [],
+    "exampleResponse": {}
+  },
+  "GET /api/busks/:busk_id": {
+    "description": "Serves a single busk with given busk_id parameter",
+    "queries": [],
+    "exampleResponse": {
+      "busk_location": {
+        "latitude": 31.1369,
+        "longitude": 147.7351
+      },
+      "busk_location_name": "National City",
+      "busk_time_date": "2024-08-14",
+      "username": "Jodie_Bednar22",
+      "user_image_url": "https://avatars.githubusercontent.com/u/87704933",
+      "busk_about_me": "Torqueo adnuo thalassinus sonitus volubilis aggredior vito canis non. Amitto cicuta cruciamentum auctor testimonium. Ex antiquus defungo varietas caelestis voro pariatur clamo.",
+      "busk_setup": "Ante adimpleo vel commemoro demo ab appono volva."
+    }
+  },
+  "DELETE /api/busks/:busk_id": {
+    "description": "serves a 204 status response when a given busk is deleted",
+    "queries": [],
+    "exampleResponse": {}
+  }
 }
