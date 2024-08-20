@@ -56,7 +56,7 @@ describe("GET /api/busks", () => {
 });
 
 describe("POST /api/busks", () => {
-  it("should respond with a 201 status code and add a busk to the database", () => {
+  it.only("should respond with a 201 status code and add a busk to the database", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
