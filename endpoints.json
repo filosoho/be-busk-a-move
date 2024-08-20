@@ -54,6 +54,38 @@
     "queries": [],
     "exampleResponse": {}
   },
+  "GET /api/busks": {
+    "description": "Serves an array of all busks",
+    "queries": [],
+    "exampleResponse": {
+      "busks": [
+        {
+          "busk_location": {
+            "latitude": 31.1369,
+            "longitude": 147.7351
+          },
+          "busk_location_name": "National City",
+          "busk_time_date": "2024-08-14",
+          "username": "Jodie_Bednar22",
+          "user_image_url": "https://avatars.githubusercontent.com/u/87704933",
+          "busk_about_me": "Torqueo adnuo thalassinus sonitus volubilis aggredior vito canis non. Amitto cicuta cruciamentum auctor testimonium. Ex antiquus defungo varietas caelestis voro pariatur clamo.",
+          "busk_setup": "Ante adimpleo vel commemoro demo ab appono volva."
+        },
+        {
+          "busk_location": {
+            "latitude": -4.2768,
+            "longitude": 168.4704
+          },
+          "busk_location_name": "Southaven",
+          "busk_time_date": "2024-08-15",
+          "username": "Vallie_Larkin",
+          "user_image_url": "https://avatars.githubusercontent.com/u/50587032",
+          "busk_about_me": "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
+          "busk_setup": "Tametsi velum thermae carus vulpes voluntarius maxime civis."
+        }
+      ]
+    }
+  },
   "GET /api/busks/:busk_id": {
     "description": "Serves a single busk with given busk_id parameter",
     "queries": [],
@@ -70,6 +102,7 @@
       "busk_setup": "Ante adimpleo vel commemoro demo ab appono volva."
     }
   },
+
   "DELETE /api/busks/:busk_id": {
     "description": "serves a 204 status response when a given busk is deleted",
     "queries": [],
