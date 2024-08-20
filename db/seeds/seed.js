@@ -30,7 +30,7 @@ const seed = ({ usersData, busksData }) => {
           busk_location JSONB NOT NULL,
           busk_location_name VARCHAR(100) NOT NULL,
           busk_time_date DATE,
-          username VARCHAR(50) REFERENCES users(username),
+          username VARCHAR(50) REFERENCES users(username) ON DELETE CASCADE,
           user_image_url VARCHAR(250),
           busk_about_me VARCHAR(1000) NOT NULL,
           busk_setup VARCHAR(500) NOT NULL

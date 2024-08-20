@@ -45,7 +45,7 @@ describe("GET /api/busks", () => {
 });
 
 describe("POST /api/busks", () => {
-  it.only("should respond with a 201 status code and add a busk to the database", () => {
+  it("should respond with a 201 status code and add a busk to the database", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
@@ -270,7 +270,7 @@ describe("/api/users/:user_id", () => {
         });
     });
   });
-  describe("DELETE", () => {
+  describe.only("DELETE", () => {
     test("DELETE 204, responds with a status of 204 and no content when a comment is deleted", () => {
       return request(app).delete("/api/users/2").expect(204);
     });
