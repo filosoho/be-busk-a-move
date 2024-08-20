@@ -5,8 +5,7 @@ module.exports = [
       longitude: 147.7351,
     },
     busk_location_name: "National City",
-    busk_time: 1723795428420,
-    busk_date: "2024-08-14",
+    busk_time_date: "2024-08-14",
     username: "Jodie_Bednar22",
     user_image_url: "https://avatars.githubusercontent.com/u/87704933",
     busk_about_me:
@@ -19,8 +18,7 @@ module.exports = [
       longitude: 168.4704,
     },
     busk_location_name: "Southaven",
-    busk_time: 1723750242682,
-    busk_date: "2024-08-15",
+    busk_time_date: "2024-08-15",
     username: "Vallie_Larkin",
     user_image_url: "https://avatars.githubusercontent.com/u/50587032",
     busk_about_me:
@@ -33,8 +31,7 @@ module.exports = [
       longitude: 124.3153,
     },
     busk_location_name: "Pietrocester",
-    busk_time: 1723772450448,
-    busk_date: "2024-08-16",
+    busk_time_date: "2024-08-16",
     username: "Sheridan72",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/776.jpg",
@@ -48,8 +45,7 @@ module.exports = [
       longitude: -166.1735,
     },
     busk_location_name: "Romaguerastead",
-    busk_time: 1723750567234,
-    busk_date: "2024-08-17",
+    busk_time_date: "2024-08-17",
     username: "Johan.Smitham",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/765.jpg",

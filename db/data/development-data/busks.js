@@ -5,8 +5,7 @@ module.exports = [
       longitude: 59.2569,
     },
     busk_location_name: "Legrostown",
-    busk_time: 1723725996201,
-    busk_date: "2024-08-14",
+    busk_time_date: "2024-08-14",
     username: "Cydney.Lehner99",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1053.jpg",
@@ -20,8 +19,7 @@ module.exports = [
       longitude: -174.1609,
     },
     busk_location_name: "Coltton",
-    busk_time: 1723804725923,
-    busk_date: "2024-08-15",
+    busk_time_date: "2024-08-15",
     username: "Robyn76",
     user_image_url: "https://avatars.githubusercontent.com/u/22509411",
     busk_about_me:
@@ -35,8 +33,7 @@ module.exports = [
       longitude: 29.4709,
     },
     busk_location_name: "New Wardstad",
-    busk_time: 1723791749140,
-    busk_date: "2024-08-16",
+    busk_time_date: "2024-08-16",
     username: "Halie.Spinka",
     user_image_url: "https://avatars.githubusercontent.com/u/41031320",
     busk_about_me:
@@ -49,8 +46,7 @@ module.exports = [
       longitude: 103.0098,
     },
     busk_location_name: "Jacobsfort",
-    busk_time: 1723769221474,
-    busk_date: "2024-08-17",
+    busk_time_date: "2024-08-17",
     username: "Elouise_Towne95",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/12.jpg",
@@ -64,8 +60,7 @@ module.exports = [
       longitude: -67.8241,
     },
     busk_location_name: "Nashville-Davidson",
-    busk_time: 1723756646746,
-    busk_date: "2024-08-18",
+    busk_time_date: "2024-08-18",
     username: "Sandrine89",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/166.jpg",
@@ -79,8 +74,7 @@ module.exports = [
       longitude: 82.3083,
     },
     busk_location_name: "Nashville-Davidson",
-    busk_time: 1723804831589,
-    busk_date: "2024-08-19",
+    busk_time_date: "2024-08-19",
     username: "Eveline_Stroman",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1002.jpg",
@@ -94,8 +88,7 @@ module.exports = [
       longitude: 168.1681,
     },
     busk_location_name: "Bereniceboro",
-    busk_time: 1723743403279,
-    busk_date: "2024-08-20",
+    busk_time_date: "2024-08-20",
     username: "Jarvis.Miller43",
     user_image_url: "https://avatars.githubusercontent.com/u/12148888",
     busk_about_me:
@@ -109,8 +102,7 @@ module.exports = [
       longitude: -146.9876,
     },
     busk_location_name: "Bergebury",
-    busk_time: 1723743308884,
-    busk_date: "2024-08-21",
+    busk_time_date: "2024-08-21",
     username: "Jermain_OKon26",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1148.jpg",
@@ -124,8 +116,7 @@ module.exports = [
       longitude: 109.8919,
     },
     busk_location_name: "Lake Christ",
-    busk_time: 1723734349765,
-    busk_date: "2024-08-22",
+    busk_time_date: "2024-08-22",
     username: "Florine9",
     user_image_url: "https://avatars.githubusercontent.com/u/33110706",
     busk_about_me:
@@ -138,8 +129,7 @@ module.exports = [
       longitude: 103.6688,
     },
     busk_location_name: "Port Natasha",
-    busk_time: 1723757459870,
-    busk_date: "2024-08-23",
+    busk_time_date: "2024-08-23",
     username: "Elouise_Towne95",
     user_image_url:
       "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/536.jpg",

@@ -29,8 +29,7 @@ const seed = ({ usersData, busksData }) => {
           busk_id SERIAL PRIMARY KEY,
           busk_location JSONB NOT NULL,
           busk_location_name VARCHAR(100) NOT NULL,
-          busk_time TIME NOT NULL,
-          busk_date DATE NOT NULL,
+          busk_time_date DATE NOT NULL,
           username VARCHAR(50) REFERENCES users(username),
           user_image_url VARCHAR(250),
           busk_about_me VARCHAR(1000) NOT NULL,
@@ -70,13 +69,12 @@ const seed = ({ usersData, busksData }) => {
     })
     .then(() => {
       const insertBusksQueryStr = format(
-        "INSERT INTO busks (busk_location, busk_location_name, busk_time, busk_date, username, user_image_url, busk_about_me, busk_setup) VALUES %L RETURNING *;",
+        "INSERT INTO busks (busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup) VALUES %L RETURNING *;",
         busksData.map(
           ({
             busk_location,
             busk_location_name,
-            busk_time,
-            busk_date,
+            busk_time_date,
             username,
             user_image_url,
             busk_about_me,
@@ -84,8 +82,7 @@ const seed = ({ usersData, busksData }) => {
           }) => [
             JSON.stringify(busk_location),
             busk_location_name,
-            new Date(busk_time).toISOString().split("T")[1].slice(0, 8),
-            busk_date,
+            busk_time_date,
             username,
             user_image_url,
             busk_about_me,
