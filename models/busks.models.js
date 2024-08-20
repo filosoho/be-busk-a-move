@@ -1,9 +1,32 @@
 const db = require("../db/connection");
 const { checkIfBuskExists } = require("./utils.models");
 
-exports.selectBusks = () => {
-  return db.query("SELECT * FROM busks;").then((result) => {
-    return result.rows;
+exports.selectBusks = (sortBy = "busk_time_date", order = "desc") => {
+
+  const greenList = [
+    "username",
+    "busk_location_name",
+    "user_image_url",
+    "busk_time_date",
+    "busk_date"
+  ]
+
+  if (!greenList.includes(sortBy)) {
+      return Promise.reject({ status: 400, msg: "Bad request" });
+  }
+
+  let sqlQuery = `SELECT * FROM busks `
+  sqlQuery += `ORDER BY ${sortBy} `
+  if (order === "asc") {
+    sqlQuery += `ASC`
+  } else if (order === "desc") {
+    sqlQuery += `DESC`
+  } else if (order) {
+    return Promise.reject({ status: 400, msg: "Bad request" })
+  }
+
+  return db.query(sqlQuery).then(({rows}) => {
+    return rows;
   });
 };
 
@@ -19,7 +42,6 @@ exports.fetchBusksById = (busk_id) => {
 };
 
 exports.addBusk = (newBusk) => {
-  console.log(newBusk,)
   const {
     busk_location,
     busk_location_name,

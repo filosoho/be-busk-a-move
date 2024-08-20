@@ -6,9 +6,14 @@ const {
 } = require("../models/busks.models");
 
 exports.getBusks = (req, res, next) => {
-  selectBusks().then((busks) => {
+  const sort_by = req.query.sort_by
+  const order = req.query.order
+  selectBusks(sort_by, order).then((busks) => {
     res.status(200).send({ busks });
-  });
+  })
+  .catch((err) => {
+    next(err)
+  })
 };
 
 exports.getBusksById = (req, res, next) => {

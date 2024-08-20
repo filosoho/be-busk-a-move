@@ -42,10 +42,55 @@ describe("GET /api/busks", () => {
         });
       });
   });
+  describe("GET Queries", () => {
+		it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
+			return request(app)
+			.get("/api/busks?sort_by=busk_time_date")
+			.expect(200)
+			.then(({body}) => {
+				expect(body.busks).toHaveLength(4)
+				expect(body.busks).toBeSortedBy('busk_time_date', {descending: true})
+			})
+		})
+    it("?sort_by= 400: should respond with a 'Bad request' when the given column name doesn't exist in the table", () => {
+      return request(app)
+      .get("/api/busks?sort_by=not-a-column")
+      .expect(400)
+      .then(({body}) => {
+        expect(body).toEqual({msg: "Bad request"})
+      })
+    })
+    it("?order= 200: should respond with all busk objects ordered by the given 'order' query", () => {
+      return request(app)
+      .get("/api/busks?order=asc")
+      .expect(200)
+      .then(({body})=> {
+          expect(body.busks).toHaveLength(4)
+          expect(body.busks).toBeSortedBy('busk_time_date', {ascending: true})
+      })
+    })
+    it("?order= 200: should respond with 'Bad request' when the 'order' query is anything apart from 'asc' or 'desc'", () => {
+      return request(app)
+      .get("/api/busks?order=not-an-order")
+      .expect(400)
+      .then(({body}) => {
+        expect(body).toEqual({msg: "Bad request"})
+      })
+    })
+    it.only("?sort_by=&order= 200: should respond with all busks in the given order, sorted by the given sort_by query", () => {
+      return request(app)
+      .get("/api/busks?sort_by=username&order=asc")
+      .expect(200)
+      .then(({body}) => {
+        expect(body.busks).toHaveLength(4)
+        expect(body.busks).toBeSortedBy('username', {ascending: true})
+      })
+    })
+	})
 });
 
 describe("POST /api/busks", () => {
-  it.only("should respond with a 201 status code and add a busk to the database", () => {
+  it("should respond with a 201 status code and add a busk to the database", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
@@ -168,6 +213,7 @@ describe("/api/users", () => {
     });
   });
 });
+
 describe("/api/users/:user_id", () => {
   describe("GET", () => {
     test("GET 200, responds with a user when requested with user_id", () => {
