@@ -126,14 +126,6 @@ describe("/api/users/:user_id", () => {
 				});
 		});
 	});
-	it("GET 200: should respond with a 200 status code and return an array of busks to the client", () => {
-		return request(app)
-			.get("/api/busks")
-			.expect(200)
-			.then((response) => {
-				expect(response.body.busks.length).toBeGreaterThan(0);
-			});
-	});
 	describe("PATCH", () => {
 		test("PATCH 200, alters the users location when given a user_id and returns the updated user", () => {
 			const body = { user_location: "Manchester, UK" };
