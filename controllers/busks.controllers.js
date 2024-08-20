@@ -8,9 +8,11 @@ const {
 exports.getBusks = (req, res, next) => {
   const sort_by = req.query.sort_by
   selectBusks(sort_by).then((busks) => {
-    console.log({busks}, "<<< Busks")
     res.status(200).send({ busks });
-  });
+  })
+  .catch((err) => {
+    next(err)
+  })
 };
 
 exports.getBusksById = (req, res, next) => {

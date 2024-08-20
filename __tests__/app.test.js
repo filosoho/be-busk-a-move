@@ -52,6 +52,14 @@ describe("GET /api/busks", () => {
 				expect(body.busks).toBeSortedBy('busk_time_date', {descending: true})
 			})
 		})
+    it.only("?sort_by= 400: Respons with a 'Bad request' when the given column name doesn't exist in the table", () => {
+      return request(app)
+      .get("/api/busks?sort_by=not-a-column")
+      .expect(400)
+      .then(({body}) => {
+        expect(body).toEqual({msg: "Bad request"})
+      })
+    })
 	})
 });
 

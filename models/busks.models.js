@@ -3,11 +3,23 @@ const { checkIfBuskExists } = require("./utils.models");
 
 exports.selectBusks = (sortBy = "busk_time_date") => {
 
+  const greenList = [
+    "username",
+    "busk_location_name",
+    "user_image_url",
+    "busk_time_date",
+    "busk_date"
+  ]
+
+  if (!greenList.includes(sortBy)) {
+      return Promise.reject({ status: 400, msg: "Bad request" });
+  }
+
   let sqlQuery = `SELECT * FROM busks `
   sqlQuery += `ORDER BY ${sortBy} DESC`
 
-  return db.query(sqlQuery).then((result) => {
-    return result.rows;
+  return db.query(sqlQuery).then(({rows}) => {
+    return rows;
   });
 };
 
@@ -23,7 +35,6 @@ exports.fetchBusksById = (busk_id) => {
 };
 
 exports.addBusk = (newBusk) => {
-  console.log(newBusk,)
   const {
     busk_location,
     busk_location_name,
