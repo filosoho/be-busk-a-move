@@ -2,6 +2,7 @@ const {
 	fetchUsers,
 	fetchUserById,
 	updateUser,
+	removeUser,
 } = require("../models/users.models");
 
 function getUsers(request, response) {
@@ -33,4 +34,16 @@ function updateUserById(request, response, next) {
 		});
 }
 
-module.exports = { getUsers, getUserById, updateUserById };
+function deleteUser(request, response, next) {
+	const userId = request.params.user_id;
+	return removeUser(userId)
+		.then(() => {
+			response.status(204).send();
+		})
+		.catch((error) => {
+			console.log(error);
+			next(error);
+		});
+}
+
+module.exports = { getUsers, getUserById, updateUserById, deleteUser };

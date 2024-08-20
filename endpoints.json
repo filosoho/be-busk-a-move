@@ -48,5 +48,10 @@
 			"user_set_up": false,
 			"instruments": ["Synthesizer", "Drums"]
 		}
+	},
+	"DELETE /api/users/:user_id": {
+		"description": "serves a 204 status response when a given comment is deleted",
+		"queries": [],
+		"exampleResponse": {}
 	}
 }
