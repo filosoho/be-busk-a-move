@@ -1,8 +1,12 @@
 const db = require("../db/connection");
 const { checkIfBuskExists } = require("./utils.models");
 
-exports.selectBusks = () => {
-  return db.query("SELECT * FROM busks;").then((result) => {
+exports.selectBusks = (sortBy = "busk_time_date") => {
+
+  let sqlQuery = `SELECT * FROM busks `
+  sqlQuery += `ORDER BY ${sortBy} DESC`
+
+  return db.query(sqlQuery).then((result) => {
     return result.rows;
   });
 };

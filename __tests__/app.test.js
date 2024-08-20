@@ -43,13 +43,13 @@ describe("GET /api/busks", () => {
       });
   });
   describe("GET Queries", () => {
-		test.only("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
+		it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
 			return request(app)
-			.get("/api/busks?sort_by=busk_time")
+			.get("/api/busks?sort_by=busk_time_date")
 			.expect(200)
 			.then(({body}) => {
-				expect(body.busks.length).toBe(4)
-				expect(body.busks).toBeSortedBy('busk_time', {descending: true})
+				expect(body.busks).toHaveLength(4)
+				expect(body.busks).toBeSortedBy('busk_time_date', {descending: true})
 			})
 		})
 	})
@@ -179,6 +179,7 @@ describe("/api/users", () => {
     });
   });
 });
+
 describe("/api/users/:user_id", () => {
   describe("GET", () => {
     test("GET 200, responds with a user when requested with user_id", () => {

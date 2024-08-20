@@ -6,7 +6,9 @@ const {
 } = require("../models/busks.models");
 
 exports.getBusks = (req, res, next) => {
-  selectBusks().then((busks) => {
+  const sort_by = req.query.sort_by
+  selectBusks(sort_by).then((busks) => {
+    console.log({busks}, "<<< Busks")
     res.status(200).send({ busks });
   });
 };
