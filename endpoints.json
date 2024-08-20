@@ -102,6 +102,24 @@
       "busk_setup": "Ante adimpleo vel commemoro demo ab appono volva."
     }
   },
+  "POST /api/busks": {
+    "description": "creates a new busk and insterts it into an array of all busks",
+    "requestFormatExample": {
+      "busk_location": {
+        "latitude": 15.1383,
+        "longitude": -166.1735
+      },
+      "busk_location_name": "Romaguerastead",
+      "busk_time_date": "2024-08-17",
+      "username": "Johan.Smitham",
+      "user_image_url": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/765.jpg",
+      "busk_about_me": "Non admitto aliqua desolo totam depono tonsor. Culpo synagoga territorio compono adulatio inflammatio soluta. Desparatus caute casus.",
+      "busk_setup": "Sint adopto aperiam aliqua alius stips vesica cum."
+    },
+    "exampleResponse": {
+      "comment": "Your busk has been successfully posted"
+    }
+  },
   "DELETE /api/busks/:busk_id": {
     "description": "serves a 204 status response when a given busk is deleted",
     "queries": [],
