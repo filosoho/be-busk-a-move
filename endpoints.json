@@ -102,7 +102,6 @@
       "busk_setup": "Ante adimpleo vel commemoro demo ab appono volva."
     }
   },
-
   "DELETE /api/busks/:busk_id": {
     "description": "serves a 204 status response when a given busk is deleted",
     "queries": [],
