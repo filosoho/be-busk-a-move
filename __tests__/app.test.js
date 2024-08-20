@@ -42,6 +42,17 @@ describe("GET /api/busks", () => {
         });
       });
   });
+  describe("GET Queries", () => {
+		test.only("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
+			return request(app)
+			.get("/api/busks?sort_by=busk_time")
+			.expect(200)
+			.then(({body}) => {
+				expect(body.busks.length).toBe(4)
+				expect(body.busks).toBeSortedBy('busk_time', {descending: true})
+			})
+		})
+	})
 });
 
 describe("POST /api/busks", () => {
