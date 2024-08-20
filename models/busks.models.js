@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const { checkIfBuskExists } = require("./utils.models");
 
 exports.selectBusks = () => {
   return db.query("SELECT * FROM busks;").then((result) => {
@@ -58,6 +59,27 @@ exports.addBusk = (newBusk) => {
       return result.rows[0];
     })
     .catch((err) => {
+      throw err;
+    });
+};
+
+exports.removeBusksById = (buskId) => {
+  return checkIfBuskExists(buskId)
+    .then((exists) => {
+      if (!exists) {
+        return Promise.reject({ status: 404, msg: "Busk not found" });
+      } else {
+        return db
+          .query("DELETE FROM busks WHERE busk_id = $1", [buskId])
+          .then((result) => {
+            if (result.rowCount === 0) {
+              return Promise.reject({ status: 404, msg: "Busk not found" });
+            }
+          });
+      }
+    })
+    .catch((err) => {
+      console.error("Error in removeBusksById:", err);
       throw err;
     });
 };

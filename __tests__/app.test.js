@@ -3,6 +3,7 @@ const seed = require("../db/seeds/seed");
 const request = require("supertest");
 const app = require("../app");
 const data = require("../db/data/test-data/index");
+const { checkIfBuskExists } = require("../models/utils.models");
 
 beforeAll(() => {
   return seed(data);
@@ -112,6 +113,35 @@ describe("GET /api/busks/:busk_id", () => {
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe("Busk does not exist");
+      });
+  });
+});
+
+describe("DELETE /api/busks/:busk_id", () => {
+  test("204: should remove the busk selected by id from the database table", () => {
+    return request(app)
+      .delete("/api/busks/2")
+      .expect(204)
+      .then(() => {
+        return checkIfBuskExists(2).then((result) => {
+          expect(result).toBe(false);
+        });
+      });
+  });
+  test("404: should return an error message when busk_id does not exist in the database", () => {
+    return request(app)
+      .delete("/api/busks/999999")
+      .expect(404)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("Busk not found");
+      });
+  });
+  test("400: should return an error message when busk_id is not a number", () => {
+    return request(app)
+      .delete("/api/busks/NaN")
+      .expect(400)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("Bad request");
       });
   });
 });
