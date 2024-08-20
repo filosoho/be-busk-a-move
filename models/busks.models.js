@@ -6,7 +6,6 @@ exports.selectBusks = () => {
   });
 };
 
-<<<<<<< HEAD
 exports.fetchBusksById = (busk_id) => {
   return db
     .query(`SELECT busks.* FROM busks WHERE busk_id = $1`, [busk_id])
@@ -17,6 +16,3 @@ exports.fetchBusksById = (busk_id) => {
       return rows[0];
     });
 };
-=======
-exports
->>>>>>> 79601c3d91da1364bcc1346cd2b6528665ae6d4d
