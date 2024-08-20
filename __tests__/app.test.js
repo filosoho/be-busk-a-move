@@ -29,10 +29,8 @@ describe("GET /api/busks", () => {
           expect(busk.busk_location).toBeObject();
           expect(busk).toHaveProperty("busk_location_name");
           expect(busk.busk_location_name).toBeString();
-          expect(busk).toHaveProperty("busk_time");
-          expect(busk.busk_time).toBeString();
-          expect(busk).toHaveProperty("busk_date");
-          expect(busk.busk_date).toBeString();
+          expect(busk).toHaveProperty("busk_time_date");
+          expect(busk.busk_time_date).toBeString();
           expect(busk).toHaveProperty("username");
           expect(busk.username).toBeString();
           expect(busk).toHaveProperty("user_image_url");
@@ -51,8 +49,7 @@ describe("POST /api/busks", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
-      busk_time: "15:00:00",
-      busk_date: null,
+      busk_time_date: null,
       username: "Jodie_Bednar22",
       user_image_url: "http://example.com/image.jpg",
       busk_about_me: "Looking for musicians!",
@@ -67,8 +64,7 @@ describe("POST /api/busks", () => {
         expect(response.body.busk).toEqual({
           busk_location: { latitude: 40.7128, longitude: -74.006 },
           busk_location_name: "Central Park",
-          busk_time: "15:00:00",
-          busk_date: null,
+          busk_time_date: null,
           busk_id: 5,
           username: "Jodie_Bednar22",
           user_image_url: "http://example.com/image.jpg",
@@ -79,77 +75,74 @@ describe("POST /api/busks", () => {
   });
 });
 
-describe("/api/busks/:busk_id", () => {
-  describe("GET /api/busks/:busk_id", () => {
-    test("GET 200: should return the specified busk object", () => {
-      return request(app)
-        .get("/api/busks/2")
-        .expect(200)
-        .then(({ body }) => {
-          const expectedBusk = {
-            busk_location: {
-              latitude: -4.2768,
-              longitude: 168.4704,
-            },
-            busk_location_name: "Southaven",
-            busk_id: 2,
-            busk_time: "19:30:42",
-            busk_date: "2024-08-14T23:00:00.000Z",
-            username: "Vallie_Larkin",
-            user_image_url: "https://avatars.githubusercontent.com/u/50587032",
-            busk_about_me:
-              "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
-            busk_setup:
-              "Tametsi velum thermae carus vulpes voluntarius maxime civis.",
-          };
-          expect(body.busk).toEqual(expectedBusk);
-        });
-    });
-    test("GET 400: should return error when requested with wrong data type", () => {
-      return request(app)
-        .get("/api/busks/not_a_number")
-        .expect(400)
-        .then(({ body }) => {
-          expect(body.msg).toBe("Bad request");
-        });
-    });
-    test("GET 404: should return error when requested with an id that doesn't exist", () => {
-      return request(app)
-        .get("/api/busks/9000")
-        .expect(404)
-        .then(({ body }) => {
-          expect(body.msg).toBe("Busk does not exist");
-        });
-    });
+describe("GET /api/busks/:busk_id", () => {
+  test("GET 200: should return the specified busk object", () => {
+    return request(app)
+      .get("/api/busks/2")
+      .expect(200)
+      .then(({ body }) => {
+        const expectedBusk = {
+          busk_location: {
+            latitude: -4.2768,
+            longitude: 168.4704,
+          },
+          busk_location_name: "Southaven",
+          busk_id: 2,
+          busk_time_date: "2024-08-14T23:00:00.000Z",
+          username: "Vallie_Larkin",
+          user_image_url: "https://avatars.githubusercontent.com/u/50587032",
+          busk_about_me:
+            "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
+          busk_setup:
+            "Tametsi velum thermae carus vulpes voluntarius maxime civis.",
+        };
+        expect(body.busk).toEqual(expectedBusk);
+      });
   });
+  test("GET 400: should return error when requested with wrong data type", () => {
+    return request(app)
+      .get("/api/busks/not_a_number")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad request");
+      });
+  });
+  test("GET 404: should return error when requested with an id that doesn't exist", () => {
+    return request(app)
+      .get("/api/busks/9000")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Busk does not exist");
+      });
+  });
+});
 
-  describe("DELETE /api/busks/:busk_id", () => {
-    test("204: should remove the busk selected by id from the database table", () => {
-      return request(app)
-        .delete("/api/busks/2")
-        .expect(204)
-        .then(() => {
-          return checkIfBuskExists(2).then((result) => {
-            expect(result).toBe(false);
-          });
+describe("DELETE /api/busks/:busk_id", () => {
+  test("204: should remove the busk selected by id from the database table", () => {
+    return request(app)
+      .delete("/api/busks/2")
+      .expect(204)
+      .then(() => {
+        return checkIfBuskExists(2).then((result) => {
+          expect(result).toBe(false);
         });
-    });
-    test("404: should return an error message when busk_id does not exist in the database", () => {
-      return request(app)
-        .delete("/api/busks/999999")
-        .expect(404)
-        .then(({ body: { msg } }) => {
-          expect(msg).toBe("Busk not found");
-        });
-    });
-    test("400: should return an error message when busk_id is not a number", () => {
-      return request(app)
-        .delete("/api/busks/NaN")
-        .expect(400)
-        .then(({ body: { msg } }) => {
-          expect(msg).toBe("Bad request");
-        });
-    });
+      });
+  });
+  test("404: should return an error message when busk_id does not exist in the database", () => {
+    return request(app)
+      .delete("/api/busks/999999")
+      .expect(404)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("Busk not found");
+      });
+  });
+  test("400: should return an error message when busk_id is not a number", () => {
+    return request(app)
+      .delete("/api/busks/NaN")
+      .expect(400)
+      .then(({ body: { msg } }) => {
+        expect(msg).toBe("Bad request");
+      });
   });
 });
 
