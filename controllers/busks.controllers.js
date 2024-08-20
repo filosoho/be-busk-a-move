@@ -1,9 +1,8 @@
-const {selectBusks, addBusk} = require('../models/busks.models')
-
 const {
   selectBusks,
   addBusk,
   fetchBusksById,
+  removeBusksById,
 } = require("../models/busks.models");
 
 exports.getBusks = (req, res, next) => {
@@ -23,14 +22,24 @@ exports.getBusksById = (req, res, next) => {
     });
 };
 
-
 exports.postBusk = (req, res, next) => {
-
   addBusk(req.body)
-  .then(busk => {
-      res.status(201).send({busk})
-  })
-  .catch(err => {
-      next(err)
-  })
+    .then((busk) => {
+      res.status(201).send({ busk });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.deleteBusksById = (req, res, next) => {
+  const { busk_id } = req.params;
+
+  removeBusksById(busk_id)
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
