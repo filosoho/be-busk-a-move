@@ -34,7 +34,6 @@ app.use((error, request, response, next) => {
 
 //500 error
 app.use((err, req, res, next) => {
-  console.error(err);
   res.status(500).send({ msg: "Internal Server Error" });
 });
 

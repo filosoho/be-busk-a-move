@@ -43,50 +43,54 @@ describe("GET /api/busks", () => {
       });
   });
   describe("GET Queries", () => {
-		it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
-			return request(app)
-			.get("/api/busks?sort_by=busk_time_date")
-			.expect(200)
-			.then(({body}) => {
-				expect(body.busks).toHaveLength(4)
-				expect(body.busks).toBeSortedBy('busk_time_date', {descending: true})
-			})
-		})
+    it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
+      return request(app)
+        .get("/api/busks?sort_by=busk_time_date")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("busk_time_date", {
+            descending: true,
+          });
+        });
+    });
     it("?sort_by= 400: should respond with a 'Bad request' when the given column name doesn't exist in the table", () => {
       return request(app)
-      .get("/api/busks?sort_by=not-a-column")
-      .expect(400)
-      .then(({body}) => {
-        expect(body).toEqual({msg: "Bad request"})
-      })
-    })
+        .get("/api/busks?sort_by=not-a-column")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body).toEqual({ msg: "Bad request" });
+        });
+    });
     it("?order= 200: should respond with all busk objects ordered by the given 'order' query", () => {
       return request(app)
-      .get("/api/busks?order=asc")
-      .expect(200)
-      .then(({body})=> {
-          expect(body.busks).toHaveLength(4)
-          expect(body.busks).toBeSortedBy('busk_time_date', {ascending: true})
-      })
-    })
+        .get("/api/busks?order=asc")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("busk_time_date", {
+            ascending: true,
+          });
+        });
+    });
     it("?order= 200: should respond with 'Bad request' when the 'order' query is anything apart from 'asc' or 'desc'", () => {
       return request(app)
-      .get("/api/busks?order=not-an-order")
-      .expect(400)
-      .then(({body}) => {
-        expect(body).toEqual({msg: "Bad request"})
-      })
-    })
-    it.only("?sort_by=&order= 200: should respond with all busks in the given order, sorted by the given sort_by query", () => {
+        .get("/api/busks?order=not-an-order")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body).toEqual({ msg: "Bad request" });
+        });
+    });
+    it("?sort_by=&order= 200: should respond with all busks in the given order, sorted by the given sort_by query", () => {
       return request(app)
-      .get("/api/busks?sort_by=username&order=asc")
-      .expect(200)
-      .then(({body}) => {
-        expect(body.busks).toHaveLength(4)
-        expect(body.busks).toBeSortedBy('username', {ascending: true})
-      })
-    })
-	})
+        .get("/api/busks?sort_by=username&order=asc")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("username", { ascending: true });
+        });
+    });
+  });
 });
 
 describe("POST /api/busks", () => {
@@ -316,7 +320,7 @@ describe("/api/users/:user_id", () => {
         });
     });
   });
-  describe.only("DELETE", () => {
+  describe("DELETE", () => {
     test("DELETE 204, responds with a status of 204 and no content when a comment is deleted", () => {
       return request(app).delete("/api/users/2").expect(204);
     });
