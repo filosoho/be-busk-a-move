@@ -1,5 +1,3 @@
-const {selectBusks, addBusk} = require('../models/busks.models')
-
 const {
   selectBusks,
   addBusk,
@@ -23,14 +21,15 @@ exports.getBusksById = (req, res, next) => {
     });
 };
 
-
 exports.postBusk = (req, res, next) => {
-
   addBusk(req.body)
-  .then(busk => {
-      res.status(201).send({busk})
-  })
-  .catch(err => {
-      next(err)
-  })
+    .then((busk) => {
+      console.log(busk);
+      {
+        res.status(201).send({ busk });
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
