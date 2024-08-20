@@ -1,7 +1,7 @@
 const db = require("../db/connection");
 const { checkIfBuskExists } = require("./utils.models");
 
-exports.selectBusks = (sortBy = "busk_time_date") => {
+exports.selectBusks = (sortBy = "busk_time_date", order = "desc") => {
 
   const greenList = [
     "username",
@@ -16,7 +16,14 @@ exports.selectBusks = (sortBy = "busk_time_date") => {
   }
 
   let sqlQuery = `SELECT * FROM busks `
-  sqlQuery += `ORDER BY ${sortBy} DESC`
+  sqlQuery += `ORDER BY ${sortBy} `
+  if (order === "asc") {
+    sqlQuery += `ASC`
+  } else if (order === "desc") {
+    sqlQuery += `DESC`
+  } else if (order) {
+    return Promise.reject({ status: 400, msg: "Bad request" })
+  }
 
   return db.query(sqlQuery).then(({rows}) => {
     return rows;
