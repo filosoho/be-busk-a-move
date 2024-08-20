@@ -22,6 +22,7 @@ exports.getBusksById = (req, res, next) => {
 };
 
 exports.postBusk = (req, res, next) => {
+<<<<<<< HEAD
   const {
     busk_location,
     busk_location_name,
@@ -63,3 +64,17 @@ exports.postBusk = (req, res, next) => {
       });
   });
 };
+=======
+    const {busk_location, busk_location_name, busk_time, username, user_image_url, busk_about_me, busk_setup} = req.body
+
+    if(!busk_location || !busk_location_name || !busk_time|| !username || !user_image_url || !busk_about_me || !busk_setup)
+        return Promise.reject({status: 404, message:'Bad request: missing required fields'})
+
+    addBusk({busk_location, busk_location_name, busk_time, username, user_image_url, busk_about_me, busk_setup})
+    .then((busk) => {
+        res.status(201).send({busk}).catch((err) => {
+            next(err)
+        })
+    })
+};
+>>>>>>> 79601c3d91da1364bcc1346cd2b6528665ae6d4d
