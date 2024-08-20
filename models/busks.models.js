@@ -19,11 +19,11 @@ exports.fetchBusksById = (busk_id) => {
 };
 
 exports.addBusk = (newBusk) => {
+  console.log(newBusk,)
   const {
     busk_location,
     busk_location_name,
-    busk_time,
-    busk_date,
+    busk_time_date,
     username,
     user_image_url,
     busk_about_me,
@@ -31,15 +31,14 @@ exports.addBusk = (newBusk) => {
   } = newBusk;
 
   const query = `
-  INSERT INTO busks(busk_location, busk_location_name, busk_time,busk_date, username, user_image_url, busk_about_me, busk_setup)
-  VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+  INSERT INTO busks(busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup)
+  VALUES($1, $2, $3, $4, $5, $6, $7)
   RETURNING *;`;
 
   const values = [
     busk_location,
     busk_location_name,
-    busk_time,
-    busk_date,
+    busk_time_date,
     username,
     user_image_url,
     busk_about_me,
@@ -50,15 +49,13 @@ exports.addBusk = (newBusk) => {
     .query(query, [
       busk_location,
       busk_location_name,
-      busk_time,
-      busk_date,
+      busk_time_date,
       username,
       user_image_url,
       busk_about_me,
       busk_setup,
     ])
     .then((result) => {
-      console.log(result, "<<< result in the model");
       return result.rows[0];
     })
     .catch((err) => {
