@@ -4,6 +4,7 @@ const request = require("supertest");
 const app = require("../app");
 const data = require("../db/data/test-data/index");
 const { checkIfBuskExists } = require("../models/utils.models");
+const endpointData = require("../endpoints.json");
 
 beforeAll(() => {
   return seed(data);
@@ -11,6 +12,30 @@ beforeAll(() => {
 
 afterAll(() => {
   return db.end();
+});
+
+describe("/api", () => {
+  describe("GET", () => {
+    test("GET:200 responds with a json representation of all available endpoints", () => {
+      return request(app)
+        .get("/api")
+        .expect(200)
+        .then(({ body: { endpoints } }) => {
+          expect(endpoints).toEqual(endpointData);
+        });
+    });
+  });
+
+  describe("*", () => {
+    test("GET 404: /api/nonexistent-route returns 404 - Not Found: Endpoint does not exist", () => {
+      return request(app)
+        .get("/api/nonexistent-route")
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("404 - Not Found: Endpoint does not exist");
+        });
+    });
+  });
 });
 
 describe("GET /api/busks", () => {

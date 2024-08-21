@@ -9,6 +9,12 @@ app.use(express.json());
 
 app.use("/api", apiRouter);
 
+app.all("*", (request, response, next) => {
+  response
+    .status(404)
+    .send({ msg: "404 - Not Found: Endpoint does not exist" });
+});
+
 //400 (SQL) errors
 app.use((error, request, response, next) => {
   if (error.code === "22P02" || error.code === "23502") {
