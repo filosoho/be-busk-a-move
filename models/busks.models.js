@@ -69,16 +69,7 @@ exports.addBusk = (newBusk) => {
   ];
 
   return db
-    .query(query, [
-      busk_location,
-      busk_location_name,
-      busk_time_date,
-      username,
-      user_image_url,
-      busk_about_me,
-      busk_setup,
-      busk_selected_instruments,
-    ])
+    .query(query, values)
     .then((result) => {
       return result.rows[0];
     })
