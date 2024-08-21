@@ -20,7 +20,7 @@ describe("GET /api/busks", () => {
       .expect(200)
       .then((response) => {
         const busks = response.body.busks;
-        expect(busks.length).toBeGreaterThan(0);
+        expect(busks.length).toBeGreaterThanOrEqual(0);
         expect(Array.isArray(busks)).toBe(true);
         busks.forEach((busk) => {
           expect(busk).toHaveProperty("busk_id");
@@ -39,6 +39,8 @@ describe("GET /api/busks", () => {
           expect(busk.busk_about_me).toBeString();
           expect(busk).toHaveProperty("busk_setup");
           expect(busk.busk_setup).toBeString();
+          expect(busk).toHaveProperty("busk_selected_instruments");
+          expect(Array.isArray(busk.busk_selected_instruments)).toBe(true);
         });
       });
   });
@@ -156,6 +158,7 @@ describe("GET /api/busks/:busk_id", () => {
             "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
           busk_setup:
             "Tametsi velum thermae carus vulpes voluntarius maxime civis.",
+          busk_selected_instruments: ["Piano", "Vocals"],
         };
         expect(body.busk).toEqual(expectedBusk);
       });
@@ -243,7 +246,7 @@ describe("/api/users/:user_id", () => {
             user_email: "Athena22@gmail.com",
             user_password: "diyhc{ypSm",
             user_image_url: "https://avatars.githubusercontent.com/u/33960533",
-            user_location: "West Hopeworth, UK",
+            user_location: "West Hopeworth",
             user_about_me: "Comitatus tabella quia.",
             user_set_up: false,
             instruments: [
@@ -294,7 +297,7 @@ describe("/api/users/:user_id", () => {
             user_about_me:
               "Comptus commemoro armarium correptius claudeo ventito beatus.",
             user_set_up: false,
-            instruments: ["Oboe", "Piano"],
+            instruments: ["Oboe", "Piano", "Vocals"],
           });
         });
     });

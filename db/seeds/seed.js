@@ -89,7 +89,7 @@ const seed = ({ usersData, busksData }) => {
             user_image_url,
             busk_about_me,
             busk_setup,
-            busk_selected_instruments,
+            `{${busk_selected_instruments.join(",")}}`,
           ]
         )
       );

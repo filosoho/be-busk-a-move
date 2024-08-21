@@ -27,7 +27,7 @@ module.exports = [
     user_about_me:
       "Comptus commemoro armarium correptius claudeo ventito beatus.",
     user_set_up: false,
-    instruments: ["Oboe", "Piano"],
+    instruments: ["Oboe", "Piano", "Vocals"],
   },
   {
     username: "Demond_Walter",

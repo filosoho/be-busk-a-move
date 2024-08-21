@@ -11,6 +11,7 @@ module.exports = [
     busk_about_me:
       "Torqueo adnuo thalassinus sonitus volubilis aggredior vito canis non. Amitto cicuta cruciamentum auctor testimonium. Ex antiquus defungo varietas caelestis voro pariatur clamo.",
     busk_setup: "Ante adimpleo vel commemoro demo ab appono volva.",
+    busk_selected_instruments: ["Electric Guitar", "Accordion", "Vocals"],
   },
   {
     busk_location: {
@@ -24,6 +25,7 @@ module.exports = [
     busk_about_me:
       "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
     busk_setup: "Tametsi velum thermae carus vulpes voluntarius maxime civis.",
+    busk_selected_instruments: ["Piano", "Vocals"],
   },
   {
     busk_location: {
@@ -38,6 +40,7 @@ module.exports = [
     busk_about_me:
       "Sit caterva consuasor contra degero sordeo totam vomer theca acidus. Denego teres tempore abutor tumultus veniam voluptatem impedit totam. Confugo comis voluptatum addo solutio bene crur.",
     busk_setup: "Curia vir cimentarius spero expedita quisquam vacuus apto.",
+    busk_selected_instruments: ["Recorder", "Drums"],
   },
   {
     busk_location: {
@@ -52,5 +55,6 @@ module.exports = [
     busk_about_me:
       "Non admitto aliqua desolo totam depono tonsor. Culpo synagoga territorio compono adulatio inflammatio soluta. Desparatus caute casus.",
     busk_setup: "Sint adopto aperiam aliqua alius stips vesica cum.",
+    busk_selected_instruments: ["Keyboard", "Piano"],
   },
 ];
