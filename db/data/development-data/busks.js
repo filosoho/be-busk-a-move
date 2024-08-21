@@ -12,6 +12,7 @@ module.exports = [
     busk_about_me:
       "Video solium ad utrimque sodalitas. Comitatus demulceo ascisco sol amo clementia tero argumentum ventus repellendus. Ullam beneficium somniculosus.",
     busk_setup: "Consequuntur thorax vigilo.",
+    busk_selected_instruments: ["Synthesizer", "Bass Guitar"],
   },
   {
     busk_location: {
@@ -26,6 +27,7 @@ module.exports = [
       "Comburo molestiae decet beatus depulso supra sequi vado. Congregatio ager fugiat spero. Amissio aliquid maiores venustas vitium deleniti cupiditate libero decet.",
     busk_setup:
       "Altus nulla asperiores beatae solum comburo cubicularis admiratio.",
+    busk_selected_instruments: ["Piano"],
   },
   {
     busk_location: {
@@ -39,6 +41,7 @@ module.exports = [
     busk_about_me:
       "Despecto maiores tego voluptatibus saepe textilis versus a. Vergo vorax virgo vorago aro cerno defluo curis recusandae caterva. Sed adipisci defero debeo talis caries temperantia.",
     busk_setup: "Truculenter stillicidium reprehenderit derideo.",
+    busk_selected_instruments: ["Cello"],
   },
   {
     busk_location: {
@@ -53,6 +56,7 @@ module.exports = [
     busk_about_me:
       "Bene thesaurus uterque auditor tantum. Approbo veniam tres vero dicta. Alveus tertius curvo tergeo appono usque apostolus adfectus possimus defessus.",
     busk_setup: "Pauci custodia cinis.",
+    busk_selected_instruments: ["Banjo", "Bass Guitar", "Trumpet"],
   },
   {
     busk_location: {
@@ -67,6 +71,7 @@ module.exports = [
     busk_about_me:
       "Decerno aegre vulnus vorago coerceo censura veniam. Adfectus cohaero sustineo trado animus. Alo deorsum ullam.",
     busk_setup: "Centum auditor illo utroque adfero terra vallum.",
+    busk_selected_instruments: ["Cello", "Trumpet"],
   },
   {
     busk_location: {
@@ -81,6 +86,12 @@ module.exports = [
     busk_about_me:
       "Carcer adduco apparatus. Quae turba condico celer cognatus ceno. Debilito charisma vitiosus.",
     busk_setup: "Vitae arcus brevis vox uter abscido complectus.",
+    busk_selected_instruments: [
+      "Synthesizer",
+      "Cello",
+      "Bass Guitar",
+      "Saxophone",
+    ],
   },
   {
     busk_location: {
@@ -95,6 +106,13 @@ module.exports = [
       "Illo vix vulgo patria. Pecus antepono tui approbo demitto surgo abundans ullus. Arceo rerum cognatus curso comedo aut labore caput aspicio nam.",
     busk_setup:
       "Attollo reiciendis absum spiritus defaeco verecundia cena adinventitias.",
+    busk_selected_instruments: [
+      "Vocals",
+      "Mandolin",
+      "Harmonica",
+      "Trombone",
+      "Flute",
+    ],
   },
   {
     busk_location: {
@@ -109,6 +127,7 @@ module.exports = [
     busk_about_me:
       "Audio sopor spiculum iste deripio considero stips. Quisquam vulnero ad cado considero. Allatus abeo defero civis cruciamentum summisse.",
     busk_setup: "Correptius accedo eos canonicus illo paens.",
+    busk_selected_instruments: ["Harp", "Banjo", "Flute", "Clarinet"],
   },
   {
     busk_location: {
@@ -122,6 +141,7 @@ module.exports = [
     busk_about_me:
       "Explicabo maxime sopor. Velum annus incidunt baiulus stipes calco auctus desidero comprehendo. Audacia aureus dedico vulariter ait vinum surgo alveus articulus.",
     busk_setup: "Curso commodi umbra appono aliqua voluptate callide quam.",
+    busk_selected_instruments: ["Recorder", "Synthesizer", "Violin"],
   },
   {
     busk_location: {
@@ -136,5 +156,12 @@ module.exports = [
     busk_about_me:
       "Ubi turpis terror defessus adicio. Credo defero venio decimus vix apud. Claro tergeo consequatur ambitus crepusculum.",
     busk_setup: "Aspicio demens uredo.",
+    busk_selected_instruments: [
+      "Flute",
+      "Trumpet",
+      "Ukulele",
+      "Electric Guitar",
+      "Keyboard",
+    ],
   },
 ];
