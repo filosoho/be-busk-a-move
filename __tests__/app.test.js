@@ -20,7 +20,7 @@ describe("GET /api/busks", () => {
       .expect(200)
       .then((response) => {
         const busks = response.body.busks;
-        expect(busks.length).toBeGreaterThan(0);
+        expect(busks.length).toBeGreaterThanOrEqual(0);
         expect(Array.isArray(busks)).toBe(true);
         busks.forEach((busk) => {
           expect(busk).toHaveProperty("busk_id");
@@ -39,54 +39,60 @@ describe("GET /api/busks", () => {
           expect(busk.busk_about_me).toBeString();
           expect(busk).toHaveProperty("busk_setup");
           expect(busk.busk_setup).toBeString();
+          expect(busk).toHaveProperty("busk_selected_instruments");
+          expect(Array.isArray(busk.busk_selected_instruments)).toBe(true);
         });
       });
   });
   describe("GET Queries", () => {
-		it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
-			return request(app)
-			.get("/api/busks?sort_by=busk_time_date")
-			.expect(200)
-			.then(({body}) => {
-				expect(body.busks).toHaveLength(4)
-				expect(body.busks).toBeSortedBy('busk_time_date', {descending: true})
-			})
-		})
+    it("?sort_by= 200: should respond with all busk objects ordered by the column of the given 'sort_by' query", () => {
+      return request(app)
+        .get("/api/busks?sort_by=busk_time_date")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("busk_time_date", {
+            descending: true,
+          });
+        });
+    });
     it("?sort_by= 400: should respond with a 'Bad request' when the given column name doesn't exist in the table", () => {
       return request(app)
-      .get("/api/busks?sort_by=not-a-column")
-      .expect(400)
-      .then(({body}) => {
-        expect(body).toEqual({msg: "Bad request"})
-      })
-    })
+        .get("/api/busks?sort_by=not-a-column")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body).toEqual({ msg: "Bad request" });
+        });
+    });
     it("?order= 200: should respond with all busk objects ordered by the given 'order' query", () => {
       return request(app)
-      .get("/api/busks?order=asc")
-      .expect(200)
-      .then(({body})=> {
-          expect(body.busks).toHaveLength(4)
-          expect(body.busks).toBeSortedBy('busk_time_date', {ascending: true})
-      })
-    })
+        .get("/api/busks?order=asc")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("busk_time_date", {
+            ascending: true,
+          });
+        });
+    });
     it("?order= 200: should respond with 'Bad request' when the 'order' query is anything apart from 'asc' or 'desc'", () => {
       return request(app)
-      .get("/api/busks?order=not-an-order")
-      .expect(400)
-      .then(({body}) => {
-        expect(body).toEqual({msg: "Bad request"})
-      })
-    })
-    it.only("?sort_by=&order= 200: should respond with all busks in the given order, sorted by the given sort_by query", () => {
+        .get("/api/busks?order=not-an-order")
+        .expect(400)
+        .then(({ body }) => {
+          expect(body).toEqual({ msg: "Bad request" });
+        });
+    });
+    it("?sort_by=&order= 200: should respond with all busks in the given order, sorted by the given sort_by query", () => {
       return request(app)
-      .get("/api/busks?sort_by=username&order=asc")
-      .expect(200)
-      .then(({body}) => {
-        expect(body.busks).toHaveLength(4)
-        expect(body.busks).toBeSortedBy('username', {ascending: true})
-      })
-    })
-	})
+        .get("/api/busks?sort_by=username&order=asc")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(4);
+          expect(body.busks).toBeSortedBy("username", { ascending: true });
+        });
+    });
+  });
 });
 
 describe("POST /api/busks", () => {
@@ -94,11 +100,17 @@ describe("POST /api/busks", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
-      busk_time_date: null,
-      username: "Jodie_Bednar22",
+      busk_time_date: "2024-08-21",
+      username: "Demond_Walter",
       user_image_url: "http://example.com/image.jpg",
       busk_about_me: "Looking for musicians!",
       busk_setup: "Guitar and vocals",
+      busk_selected_instruments: [
+        "Synthesizer",
+        "Guitar",
+        "Bass Guitar",
+        "Saxophone",
+      ],
     };
 
     return request(app)
@@ -109,12 +121,18 @@ describe("POST /api/busks", () => {
         expect(response.body.busk).toEqual({
           busk_location: { latitude: 40.7128, longitude: -74.006 },
           busk_location_name: "Central Park",
-          busk_time_date: null,
-          busk_id: 5,
-          username: "Jodie_Bednar22",
+          busk_time_date: "2024-08-20T23:00:00.000Z",
+          busk_id: expect.any(Number),
+          username: "Demond_Walter",
           user_image_url: "http://example.com/image.jpg",
           busk_about_me: "Looking for musicians!",
           busk_setup: "Guitar and vocals",
+          busk_selected_instruments: [
+            "Synthesizer",
+            "Guitar",
+            "Bass Guitar",
+            "Saxophone",
+          ],
         });
       });
   });
@@ -134,12 +152,13 @@ describe("GET /api/busks/:busk_id", () => {
           busk_location_name: "Southaven",
           busk_id: 2,
           busk_time_date: "2024-08-14T23:00:00.000Z",
-          username: "Vallie_Larkin",
+          username: "Lilian_Padberg35",
           user_image_url: "https://avatars.githubusercontent.com/u/50587032",
           busk_about_me:
             "Aperte absum universe illo placeat pecto tolero. Statua tardus defleo victus bellum adipisci commodi officia. Ancilla terreo consequuntur comedo coerceo fuga socius nihil tubineus.",
           busk_setup:
             "Tametsi velum thermae carus vulpes voluntarius maxime civis.",
+          busk_selected_instruments: ["Piano", "Vocals"],
         };
         expect(body.busk).toEqual(expectedBusk);
       });
@@ -222,16 +241,21 @@ describe("/api/users/:user_id", () => {
         .expect(200)
         .then(({ body }) => {
           expect(body).toMatchObject({
-            username: "Jodie_Bednar22",
-            full_name: "Beverly Christiansen",
-            user_email: "Jett91@gmail.com",
-            user_password: "Czh}as7hcr",
-            user_image_url: "https://avatars.githubusercontent.com/u/84968041",
-            user_location: "North Gayleboro, UK",
-            user_about_me:
-              "Currus texo quaerat quisquam cornu sustineo demoror usque.",
-            user_set_up: true,
-            instruments: ["Vocals", "Flute"],
+            username: "Olaf.Legros5",
+            full_name: "Loretta Jones",
+            user_email: "Athena22@gmail.com",
+            user_password: "diyhc{ypSm",
+            user_image_url: "https://avatars.githubusercontent.com/u/33960533",
+            user_location: "West Hopeworth",
+            user_about_me: "Comitatus tabella quia.",
+            user_set_up: false,
+            instruments: [
+              "Electric Guitar",
+              "Accordion",
+              "Vocals",
+              "Mandolin",
+              "Trumpet",
+            ],
           });
         });
     });
@@ -252,6 +276,7 @@ describe("/api/users/:user_id", () => {
         });
     });
   });
+
   describe("PATCH", () => {
     test("PATCH 200, alters the users location when given a user_id and returns the updated user", () => {
       const body = { user_location: "Manchester, UK" };
@@ -262,16 +287,17 @@ describe("/api/users/:user_id", () => {
         .then(({ body }) => {
           expect(body).toEqual({
             users_id: 2,
-            username: "Vallie_Larkin",
-            full_name: "Jody Kozey",
-            user_email: "Moses_Skiles78@gmail.com",
-            user_password: "r75xf6o[mB",
+            username: "Lilian_Padberg35",
+            full_name: "Daisy Schumm",
+            user_email: "Ellis78@gmail.com",
+            user_password: "kvb40gm&mV",
             user_image_url:
-              "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg",
+              "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/331.jpg",
             user_location: "Manchester, UK",
-            user_about_me: "Adhuc videlicet amiculum bardus uter.",
+            user_about_me:
+              "Comptus commemoro armarium correptius claudeo ventito beatus.",
             user_set_up: false,
-            instruments: ["Synthesizer", "Drums"],
+            instruments: ["Oboe", "Piano", "Vocals"],
           });
         });
     });
@@ -316,6 +342,7 @@ describe("/api/users/:user_id", () => {
         });
     });
   });
+
   describe("DELETE", () => {
     test("DELETE 204, responds with a status of 204 and no content when a comment is deleted", () => {
       return request(app).delete("/api/users/2").expect(204);

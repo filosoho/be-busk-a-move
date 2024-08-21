@@ -2,30 +2,29 @@ const db = require("../db/connection");
 const { checkIfBuskExists } = require("./utils.models");
 
 exports.selectBusks = (sortBy = "busk_time_date", order = "desc") => {
-
   const greenList = [
     "username",
     "busk_location_name",
     "user_image_url",
     "busk_time_date",
-    "busk_date"
-  ]
+    "busk_date",
+  ];
 
   if (!greenList.includes(sortBy)) {
-      return Promise.reject({ status: 400, msg: "Bad request" });
+    return Promise.reject({ status: 400, msg: "Bad request" });
   }
 
-  let sqlQuery = `SELECT * FROM busks `
-  sqlQuery += `ORDER BY ${sortBy} `
+  let sqlQuery = `SELECT * FROM busks `;
+  sqlQuery += `ORDER BY ${sortBy} `;
   if (order === "asc") {
-    sqlQuery += `ASC`
+    sqlQuery += `ASC`;
   } else if (order === "desc") {
-    sqlQuery += `DESC`
+    sqlQuery += `DESC`;
   } else if (order) {
-    return Promise.reject({ status: 400, msg: "Bad request" })
+    return Promise.reject({ status: 400, msg: "Bad request" });
   }
 
-  return db.query(sqlQuery).then(({rows}) => {
+  return db.query(sqlQuery).then(({ rows }) => {
     return rows;
   });
 };
@@ -50,11 +49,12 @@ exports.addBusk = (newBusk) => {
     user_image_url,
     busk_about_me,
     busk_setup,
+    busk_selected_instruments,
   } = newBusk;
 
   const query = `
-  INSERT INTO busks(busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup)
-  VALUES($1, $2, $3, $4, $5, $6, $7)
+  INSERT INTO busks(busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup, busk_selected_instruments)
+  VALUES($1, $2, $3, $4, $5, $6, $7, $8)
   RETURNING *;`;
 
   const values = [
@@ -65,6 +65,7 @@ exports.addBusk = (newBusk) => {
     user_image_url,
     busk_about_me,
     busk_setup,
+    busk_selected_instruments,
   ];
 
   return db
@@ -76,6 +77,7 @@ exports.addBusk = (newBusk) => {
       user_image_url,
       busk_about_me,
       busk_setup,
+      busk_selected_instruments,
     ])
     .then((result) => {
       return result.rows[0];
@@ -101,7 +103,6 @@ exports.removeBusksById = (buskId) => {
       }
     })
     .catch((err) => {
-      console.error("Error in removeBusksById:", err);
       throw err;
     });
 };
