@@ -38,13 +38,22 @@ exports.generateUser = () => {
     "Keyboard",
     "Saxophone",
     "Clarinet",
+    "Trumpet",
+    "Trombone",
+    "Oboe",
+    "Mandolin",
+    "Banjo",
+    "Accordion",
+    "Ukulele",
+    "Harmonica",
+    "Electric Guitar",
   ];
 
-  const firstInstrument = faker.helpers.arrayElement(instruments);
-  const remainingInstruments = instruments.filter(
-    (instrument) => instrument !== firstInstrument
-  );
-  const secondInstrument = faker.helpers.arrayElement(remainingInstruments);
+  const shuffledInstruments = faker.helpers.shuffle(instruments);
+
+  const randomInstrumentsLength = Math.floor(Math.random() * 5) + 1;
+
+  const userInstruments = shuffledInstruments.slice(0, randomInstrumentsLength);
 
   return {
     username: faker.internet.userName(),
@@ -52,10 +61,10 @@ exports.generateUser = () => {
     user_email: faker.internet.email(),
     user_password: exports.generateValidPassword(),
     user_image_url: faker.image.avatar(),
-    user_location: `${faker.location.city()}, UK`,
+    user_location: `${faker.location.city()}`,
     user_about_me: faker.lorem.sentence(),
     user_set_up: faker.datatype.boolean(),
-    instruments: [firstInstrument, secondInstrument],
+    instruments: userInstruments,
   };
 };
 
@@ -68,5 +77,9 @@ exports.generateUsers = (count = 10) => {
 };
 
 // Example usage to generate data (this part is not needed for the tests)
+// if (require.main === module) {
+// const users = exports.generateUsers(14);
+// console.log(JSON.stringify(users, null, 4));
+// }
 // const users = exports.generateUsers(14);
 // console.log(JSON.stringify(users, null, 4));

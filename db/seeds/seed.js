@@ -29,11 +29,12 @@ const seed = ({ usersData, busksData }) => {
           busk_id SERIAL PRIMARY KEY,
           busk_location JSONB NOT NULL,
           busk_location_name VARCHAR(100) NOT NULL,
-          busk_time_date DATE,
+          busk_time_date DATE NOT NULL,
           username VARCHAR(50) REFERENCES users(username) ON DELETE CASCADE,
           user_image_url VARCHAR(250),
           busk_about_me VARCHAR(1000) NOT NULL,
-          busk_setup VARCHAR(500) NOT NULL
+          busk_setup VARCHAR(500) NOT NULL,
+          busk_selected_instruments TEXT[]
         );
       `);
     })
@@ -69,7 +70,7 @@ const seed = ({ usersData, busksData }) => {
     })
     .then(() => {
       const insertBusksQueryStr = format(
-        "INSERT INTO busks (busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup) VALUES %L RETURNING *;",
+        "INSERT INTO busks (busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup, busk_selected_instruments) VALUES %L RETURNING *;",
         busksData.map(
           ({
             busk_location,
@@ -79,6 +80,7 @@ const seed = ({ usersData, busksData }) => {
             user_image_url,
             busk_about_me,
             busk_setup,
+            busk_selected_instruments,
           }) => [
             JSON.stringify(busk_location),
             busk_location_name,
@@ -87,6 +89,7 @@ const seed = ({ usersData, busksData }) => {
             user_image_url,
             busk_about_me,
             busk_setup,
+            busk_selected_instruments,
           ]
         )
       );

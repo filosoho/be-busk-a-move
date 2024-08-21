@@ -7,8 +7,6 @@ exports.generateBuskData = (numRecords) => {
     const recentDate = faker.date.recent();
     const buskDate = recentDate.toISOString().split("T")[0];
 
-    console.log(recentDate);
-
     busks.push({
       busk_location: {
         latitude: faker.location.latitude(),
@@ -34,7 +32,7 @@ exports.generateBuskData = (numRecords) => {
 //   console.log(JSON.stringify(buskData, null, 2));
 // }
 
-const numRecords = 14;
-const buskData = exports.generateBuskData(numRecords);
+// const numRecords = 14;
+// const buskData = exports.generateBuskData(numRecords);
 
-console.log(JSON.stringify(buskData, null, 2));
+// console.log(JSON.stringify(buskData, null, 2));

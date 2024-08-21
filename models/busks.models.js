@@ -49,11 +49,12 @@ exports.addBusk = (newBusk) => {
     user_image_url,
     busk_about_me,
     busk_setup,
+    busk_selected_instruments,
   } = newBusk;
 
   const query = `
-  INSERT INTO busks(busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup)
-  VALUES($1, $2, $3, $4, $5, $6, $7)
+  INSERT INTO busks(busk_location, busk_location_name, busk_time_date, username, user_image_url, busk_about_me, busk_setup, busk_selected_instruments)
+  VALUES($1, $2, $3, $4, $5, $6, $7,  $8)
   RETURNING *;`;
 
   const values = [
@@ -64,6 +65,7 @@ exports.addBusk = (newBusk) => {
     user_image_url,
     busk_about_me,
     busk_setup,
+    busk_selected_instruments,
   ];
 
   return db
@@ -75,6 +77,7 @@ exports.addBusk = (newBusk) => {
       user_image_url,
       busk_about_me,
       busk_setup,
+      busk_selected_instruments,
     ])
     .then((result) => {
       return result.rows[0];

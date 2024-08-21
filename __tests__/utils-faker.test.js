@@ -57,17 +57,12 @@ describe("users-faker", () => {
       expect(typeof user.user_about_me).toBe("string");
       expect(typeof user.user_set_up).toBe("boolean");
       expect(Array.isArray(user.instruments)).toBe(true);
-      expect(user.instruments.length).toBe(2);
+      expect(user.instruments.length).toBeGreaterThan(0);
     });
 
     it("should generate a user with instruments that are different", () => {
       const user = generateUser();
       expect(user.instruments[0]).not.toBe(user.instruments[1]);
-    });
-
-    it("should generate a user with location ending in ', UK'", () => {
-      const user = generateUser();
-      expect(user.user_location.endsWith(", UK")).toBe(true);
     });
   });
 
@@ -103,7 +98,7 @@ describe("users-faker", () => {
         expect(typeof user.user_about_me).toBe("string");
         expect(typeof user.user_set_up).toBe("boolean");
         expect(Array.isArray(user.instruments)).toBe(true);
-        expect(user.instruments.length).toBe(2);
+        expect(user.instruments.length).toBeGreaterThan(0);
       });
     });
 
@@ -120,11 +115,33 @@ describe("users-faker", () => {
 
       expect(uniqueUsernames.size).toBe(usernames.length);
     });
+
+    it("should assign each user between 1 and 5 instruments", () => {
+      const users = generateUsers(10);
+
+      users.forEach((user) => {
+        expect(user.instruments.length).toBeGreaterThanOrEqual(1);
+        expect(user.instruments.length).toBeLessThanOrEqual(5);
+      });
+    });
   });
 });
 
 describe("busks-faker", () => {
   describe("generateBuskData", () => {
+    it("should not generate any null or empty fields in the busker profile", () => {
+      const busks = generateBuskDataUk(10);
+
+      busks.forEach((busk) => {
+        expect(busk.username).not.toBeNull();
+        expect(busk.username).not.toEqual("");
+        expect(busk.user_image_url).not.toBeNull();
+        expect(busk.user_image_url).not.toEqual("");
+        expect(busk.busk_about_me).not.toBeNull();
+        expect(busk.busk_about_me).not.toEqual("");
+      });
+    });
+
     it("should generate the specified number of busk records", () => {
       const numRecords = 10;
       const busks = generateBuskData(numRecords);
@@ -153,7 +170,7 @@ describe("busks-faker", () => {
       busks.forEach((busk) => {
         expect(typeof busk.busk_location).toBe("object");
         expect(typeof busk.busk_location_name).toBe("string");
-        expect(typeof busk.busk_time_date).toBe("number");
+        expect(typeof busk.busk_time_date).toBe("string");
         expect(typeof busk.username).toBe("string");
         expect(typeof busk.user_image_url).toBe("string");
         expect(typeof busk.busk_about_me).toBe("string");
@@ -194,6 +211,19 @@ describe("busks-faker", () => {
 
 describe("busks-faker-uk", () => {
   describe("generateBuskDataUk", () => {
+    it("should not generate any null or empty fields in the busker profile", () => {
+      const busks = generateBuskDataUk(10);
+
+      busks.forEach((busk) => {
+        expect(busk.username).not.toBeNull();
+        expect(busk.username).not.toEqual("");
+        expect(busk.user_image_url).not.toBeNull();
+        expect(busk.user_image_url).not.toEqual("");
+        expect(busk.busk_about_me).not.toBeNull();
+        expect(busk.busk_about_me).not.toEqual("");
+      });
+    });
+
     it("should generate the correct number of records", () => {
       const numRecords = 10;
       const busks = generateBuskDataUk(numRecords);
@@ -236,11 +266,13 @@ describe("busks-faker-uk", () => {
     it("should generate busk times that are recent", () => {
       const numRecords = 10;
       const busks = generateBuskDataUk(numRecords);
+
       const now = Date.now();
 
       expect(busks.length).toBeGreaterThan(0);
       busks.forEach((busk) => {
-        expect(busk.busk_time_date).toBeLessThanOrEqual(now);
+        const buskDateTimestamp = new Date(busk.busk_time_date).getTime();
+        expect(buskDateTimestamp).toBeLessThanOrEqual(now);
       });
     });
 
