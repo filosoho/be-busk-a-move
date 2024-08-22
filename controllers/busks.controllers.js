@@ -6,9 +6,10 @@ const {
 } = require("../models/busks.models");
 
 exports.getBusks = (req, res, next) => {
+  const instrument = req.query.instruments
   const sort_by = req.query.sort_by
   const order = req.query.order
-  selectBusks(sort_by, order).then((busks) => {
+  selectBusks(sort_by, order, instrument).then((busks) => {
     res.status(200).send({ busks });
   })
   .catch((err) => {

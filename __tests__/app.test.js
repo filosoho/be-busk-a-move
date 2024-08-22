@@ -100,7 +100,7 @@ describe("GET /api/busks", () => {
           });
         });
     });
-    it("?order= 200: should respond with 'Bad request' when the 'order' query is anything apart from 'asc' or 'desc'", () => {
+    it("?order= 400: should respond with 'Bad request' when the 'order' query is anything apart from 'asc' or 'desc'", () => {
       return request(app)
         .get("/api/busks?order=not-an-order")
         .expect(400)
@@ -117,6 +117,17 @@ describe("GET /api/busks", () => {
           expect(body.busks).toBeSortedBy("username", { ascending: true });
         });
     });
+    it("?instruments= 200: should respond with only the busks that have the one selected instrument associated with it", () => {
+      return request(app)
+      .get("/api/busks?instruments=Vocals")
+      .expect(200)
+      .then(({body}) => {
+        expect(body.busks).toHaveLength(2)
+        body.busks.forEach((busk) => {
+          expect(busk.busk_selected_instruments).toContain("Vocals")
+        })
+      })
+    })
   });
 });
 
