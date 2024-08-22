@@ -40,7 +40,7 @@ module.exports = [
     busk_about_me:
       "Sit caterva consuasor contra degero sordeo totam vomer theca acidus. Denego teres tempore abutor tumultus veniam voluptatem impedit totam. Confugo comis voluptatum addo solutio bene crur.",
     busk_setup: "Curia vir cimentarius spero expedita quisquam vacuus apto.",
-    busk_selected_instruments: ["Recorder", "Drums"],
+    busk_selected_instruments: ["Recorder"],
   },
   {
     busk_location: {
@@ -55,6 +55,6 @@ module.exports = [
     busk_about_me:
       "Non admitto aliqua desolo totam depono tonsor. Culpo synagoga territorio compono adulatio inflammatio soluta. Desparatus caute casus.",
     busk_setup: "Sint adopto aperiam aliqua alius stips vesica cum.",
-    busk_selected_instruments: ["Keyboard", "Piano"],
+    busk_selected_instruments: ["Keyboard", "Piano", "Electric Guitar"],
   },
 ];
