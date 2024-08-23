@@ -1,6 +1,6 @@
 # Be-Busk-A-Move API
 
-Be-Busk-A-Move is a RESTful API built using Node.js, Express, and PostgreSQL. It is designed to manage users and busking events. Users can create, read, update, and delete (CRUD) both user profiles and busking events. The API supports filtering and sorting options and uses JSON for data exchange. It is ideal for applications that manage busking events or communities.
+Be-Busk-A-Move is a RESTful API built using Node.js, Express, and PostgreSQL. It is designed to manage users and busking events. Users can create, read, update and delete (CRUD) both user profiles and busking events. The API supports filtering and sorting options and uses JSON for data exchange. It is ideal for applications that manage busking events or communities.
 
 ## Hosted Version
 
