@@ -3,12 +3,21 @@ const {
   fetchUserById,
   updateUser,
   removeUser,
+  addUser,
 } = require("../models/users.models");
 
 function getUsers(request, response) {
   return fetchUsers().then((users) => {
     response.status(200).send({ users });
   });
+}
+
+function postUser(request, response) {
+  const newUser = request.body
+  return addUser(newUser)
+  .then((user) => {
+    response.status(201).send({user})
+  })
 }
 
 function getUserById(request, response, next) {
@@ -45,4 +54,4 @@ function deleteUser(request, response, next) {
     });
 }
 
-module.exports = { getUsers, getUserById, updateUserById, deleteUser };
+module.exports = { getUsers, postUser, getUserById, updateUserById, deleteUser };

@@ -311,7 +311,52 @@ describe("/api/users/:user_id", () => {
           expect(body.msg).toBe("user does not exist");
         });
     });
-  });
+  })
+  describe("POST", () => {
+    test("POST 201: responds with a 201 status code and the posted user", () => {
+      const newUser = {
+        username: "LukeHarrisonDev",
+        full_name: "Luke Harrison",
+        user_email: "luke_haz@yahoo.co.uk",
+        user_password: "LukeDev123^&*",
+        user_image_url: "https://avatars.githubusercontent.com/u/33960533",
+        user_location: "Bradford",
+        user_about_me: "I love playing Guitar and want to get get started with Busking",
+        instruments: [
+          "Electric Guitar",
+          "Bass",
+          "Vocals",
+          "Drums"
+        ],
+      }
+      return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(201)
+      .then(({body}) => {
+        expect(body.user).toMatchObject({
+          users_id: expect.any(Number),
+          username: "LukeHarrisonDev",
+          full_name: "Luke Harrison",
+          user_email: "luke_haz@yahoo.co.uk",
+          user_password: "LukeDev123^&*",
+          user_image_url: "https://avatars.githubusercontent.com/u/33960533",
+          user_location: "Bradford",
+          user_about_me: "I love playing Guitar and want to get get started with Busking",
+          user_set_up: false,
+          instruments: [
+            "Electric Guitar",
+            "Bass",
+            "Vocals",
+            "Drums"
+          ],
+        })
+      })
+
+
+
+    })
+  })
 
   describe("PATCH", () => {
     test("PATCH 200, alters the users location when given a user_id and returns the updated user", () => {
