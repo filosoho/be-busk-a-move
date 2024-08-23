@@ -6,6 +6,27 @@ function fetchUsers() {
   });
 }
 
+function addUser(newUser) {
+  let sqlQuery = `INSERT INTO users (username, full_name, user_email, user_password, user_image_url, user_location, user_about_me, instruments)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+  RETURNING *`
+
+  const values = [
+    newUser.username,
+    newUser.full_name,
+    newUser.user_email,
+    newUser.user_password,
+    newUser.user_image_url,
+    newUser.user_location,
+    newUser.user_about_me,
+    newUser.instruments
+  ]
+  return db.query(sqlQuery, values)
+  .then(({rows}) => {
+    return rows[0]
+  })
+}
+
 function fetchUserById(userId) {
   return db
     .query(`SELECT users.* FROM users WHERE users_id = $1`, [userId])
@@ -43,6 +64,7 @@ function removeUser(user_id) {
 
 module.exports = {
   fetchUsers,
+  addUser,
   fetchUserById,
   updateUser,
   removeUser,

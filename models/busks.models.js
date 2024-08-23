@@ -3,7 +3,6 @@ const { checkInstrumentExists } = require("../utils/checkInstrumentExists");
 const { checkIfBuskExists } = require("./utils.models");
 
 exports.selectBusks = (sortBy = "busk_time_date", order = "desc", instrument = undefined) => {
-  console.log(sortBy, "    ", order, "     ", instrument, "<<< ")
   const greenList = [
     "username",
     "busk_location_name",
