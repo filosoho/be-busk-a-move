@@ -10,7 +10,7 @@ const seed = ({ usersData, busksData }) => {
     .then(() => {
       return db.query(`
         CREATE TABLE users (
-          users_id SERIAL PRIMARY KEY,
+          user_id SERIAL PRIMARY KEY,
           username VARCHAR(50) UNIQUE NOT NULL,
           full_name VARCHAR(100) NOT NULL,
           user_email VARCHAR(60) UNIQUE NOT NULL,

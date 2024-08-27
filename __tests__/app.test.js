@@ -331,7 +331,7 @@ describe("/api/users/:user_id", () => {
         .expect(201)
         .then(({ body }) => {
           expect(body.user).toMatchObject({
-            users_id: expect.any(Number),
+            user_id: expect.any(Number),
             username: "LukeHarrisonDev",
             full_name: "Luke Harrison",
             user_email: "luke_haz@yahoo.co.uk",
@@ -356,7 +356,7 @@ describe("/api/users/:user_id", () => {
         .expect(200)
         .then(({ body }) => {
           expect(body).toEqual({
-            users_id: 2,
+            user_id: 2,
             username: "Lilian_Padberg35",
             full_name: "Daisy Schumm",
             user_email: "Ellis78@gmail.com",

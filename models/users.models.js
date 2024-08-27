@@ -9,7 +9,7 @@ function fetchUsers() {
 function addUser(newUser) {
   let sqlQuery = `INSERT INTO users (username, full_name, user_email, user_password, user_image_url, user_location, user_about_me, instruments)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-  RETURNING *`
+  RETURNING *`;
 
   const values = [
     newUser.username,
@@ -19,17 +19,16 @@ function addUser(newUser) {
     newUser.user_image_url,
     newUser.user_location,
     newUser.user_about_me,
-    newUser.instruments
-  ]
-  return db.query(sqlQuery, values)
-  .then(({rows}) => {
-    return rows[0]
-  })
+    newUser.instruments,
+  ];
+  return db.query(sqlQuery, values).then(({ rows }) => {
+    return rows[0];
+  });
 }
 
 function fetchUserById(userId) {
   return db
-    .query(`SELECT users.* FROM users WHERE users_id = $1`, [userId])
+    .query(`SELECT users.* FROM users WHERE user_id = $1`, [userId])
     .then((response) => {
       if (response.rows.length === 0) {
         return Promise.reject({ status: 404, msg: "user does not exist" });
@@ -41,7 +40,7 @@ function fetchUserById(userId) {
 function updateUser(user_id, location) {
   return db
     .query(
-      "UPDATE users SET user_location = $2 WHERE users.users_id = $1 RETURNING *",
+      "UPDATE users SET user_location = $2 WHERE users.user_id = $1 RETURNING *",
       [user_id, location]
     )
     .then((response) => {
@@ -54,7 +53,7 @@ function updateUser(user_id, location) {
 
 function removeUser(user_id) {
   return db
-    .query("DELETE FROM users WHERE users_id = $1 RETURNING *", [user_id])
+    .query("DELETE FROM users WHERE user_id = $1 RETURNING *", [user_id])
     .then((response) => {
       if (response.rows.length === 0) {
         return Promise.reject({ status: 404, msg: "user does not exist" });
