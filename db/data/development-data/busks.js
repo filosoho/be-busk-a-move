@@ -60,8 +60,8 @@ module.exports = [
   },
   {
     busk_location: {
-      latitude: 86.8187,
-      longitude: -67.8241,
+      latitude: 53.472158234310974,
+      longitude: -2.2385771531814793,
     },
     busk_location_name: "Nashville-Davidson",
     busk_time_date: "2024-08-18",
@@ -149,7 +149,7 @@ module.exports = [
       latitude: 53.79655723831467,
       longitude: -1.5438368291954374,
     },
-    busk_location_name: "Port Natasha",
+    busk_location_name: "Inside Leeds Trinity",
     busk_time_date: "2024-08-23",
     username: "Sincere2",
     user_image_url:
