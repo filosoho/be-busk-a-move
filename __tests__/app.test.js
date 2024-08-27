@@ -119,15 +119,15 @@ describe("GET /api/busks", () => {
     });
     it("?instruments= 200: should respond with only the busks that have the one selected instrument associated with it", () => {
       return request(app)
-      .get("/api/busks?instruments=Vocals")
-      .expect(200)
-      .then(({body}) => {
-        expect(body.busks).toHaveLength(2)
-        body.busks.forEach((busk) => {
-          expect(busk.busk_selected_instruments).toContain("Vocals")
-        })
-      })
-    })
+        .get("/api/busks?instruments=Vocals")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.busks).toHaveLength(2);
+          body.busks.forEach((busk) => {
+            expect(busk.busk_selected_instruments).toContain("Vocals");
+          });
+        });
+    });
   });
 });
 
@@ -136,7 +136,7 @@ describe("POST /api/busks", () => {
     const newBusk = {
       busk_location: { latitude: 40.7128, longitude: -74.006 },
       busk_location_name: "Central Park",
-      busk_time_date: "2024-08-21",
+      busk_time_date: "2024-08-20T23:45:00.000Z",
       username: "Demond_Walter",
       user_image_url: "http://example.com/image.jpg",
       busk_about_me: "Looking for musicians!",
@@ -157,7 +157,7 @@ describe("POST /api/busks", () => {
         expect(response.body.busk).toEqual({
           busk_location: { latitude: 40.7128, longitude: -74.006 },
           busk_location_name: "Central Park",
-          busk_time_date: "2024-08-20T23:00:00.000Z",
+          busk_time_date: "2024-08-20T23:45:00.000Z",
           busk_id: expect.any(Number),
           username: "Demond_Walter",
           user_image_url: "http://example.com/image.jpg",
@@ -311,7 +311,7 @@ describe("/api/users/:user_id", () => {
           expect(body.msg).toBe("user does not exist");
         });
     });
-  })
+  });
   describe("POST", () => {
     test("POST 201: responds with a 201 status code and the posted user", () => {
       const newUser = {
@@ -321,42 +321,31 @@ describe("/api/users/:user_id", () => {
         user_password: "LukeDev123^&*",
         user_image_url: "https://avatars.githubusercontent.com/u/33960533",
         user_location: "Bradford",
-        user_about_me: "I love playing Guitar and want to get get started with Busking",
-        instruments: [
-          "Electric Guitar",
-          "Bass",
-          "Vocals",
-          "Drums"
-        ],
-      }
+        user_about_me:
+          "I love playing Guitar and want to get get started with Busking",
+        instruments: ["Electric Guitar", "Bass", "Vocals", "Drums"],
+      };
       return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(201)
-      .then(({body}) => {
-        expect(body.user).toMatchObject({
-          users_id: expect.any(Number),
-          username: "LukeHarrisonDev",
-          full_name: "Luke Harrison",
-          user_email: "luke_haz@yahoo.co.uk",
-          user_password: "LukeDev123^&*",
-          user_image_url: "https://avatars.githubusercontent.com/u/33960533",
-          user_location: "Bradford",
-          user_about_me: "I love playing Guitar and want to get get started with Busking",
-          user_set_up: false,
-          instruments: [
-            "Electric Guitar",
-            "Bass",
-            "Vocals",
-            "Drums"
-          ],
-        })
-      })
-
-
-
-    })
-  })
+        .post("/api/users")
+        .send(newUser)
+        .expect(201)
+        .then(({ body }) => {
+          expect(body.user).toMatchObject({
+            users_id: expect.any(Number),
+            username: "LukeHarrisonDev",
+            full_name: "Luke Harrison",
+            user_email: "luke_haz@yahoo.co.uk",
+            user_password: "LukeDev123^&*",
+            user_image_url: "https://avatars.githubusercontent.com/u/33960533",
+            user_location: "Bradford",
+            user_about_me:
+              "I love playing Guitar and want to get get started with Busking",
+            user_set_up: false,
+            instruments: ["Electric Guitar", "Bass", "Vocals", "Drums"],
+          });
+        });
+    });
+  });
 
   describe("PATCH", () => {
     test("PATCH 200, alters the users location when given a user_id and returns the updated user", () => {
