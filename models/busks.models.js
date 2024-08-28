@@ -106,6 +106,7 @@ exports.addBusk = (newBusk) => {
 		});
 };
 
+
 exports.patchBusk = (buskId, location) => {
 	return db
 		.query(
