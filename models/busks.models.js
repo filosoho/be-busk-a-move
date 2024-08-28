@@ -106,21 +106,6 @@ exports.addBusk = (newBusk) => {
 		});
 };
 
-
-exports.patchBusk = (buskId, location) => {
-	return db
-		.query(
-			"UPDATE busks SET busk_location_name = $2 WHERE busks.busk_id = $1 RETURNING *",
-			[buskId, location]
-		)
-		.then((response) => {
-			if (response.rows.length === 0) {
-				return Promise.reject({ status: 404, msg: "busk does not exist" });
-			}
-			return response.rows[0];
-		});
-};
-
 exports.removeBusksById = (buskId) => {
 	return checkIfBuskExists(buskId)
 		.then((exists) => {
@@ -138,5 +123,19 @@ exports.removeBusksById = (buskId) => {
 		})
 		.catch((err) => {
 			throw err;
+		});
+};
+
+exports.patchBusk = (buskId, location) => {
+	return db
+		.query(
+			"UPDATE busks SET busk_location_name = $2 WHERE busks.busk_id = $1 RETURNING *",
+			[buskId, location]
+		)
+		.then((response) => {
+			if (response.rows.length === 0) {
+				return Promise.reject({ status: 404, msg: "busk does not exist" });
+			}
+			return response.rows[0];
 		});
 };
